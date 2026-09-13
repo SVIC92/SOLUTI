@@ -1,0 +1,59 @@
+Para un sistema de gestión de solicitudes de soporte TI (Help Desk / Ticketing System), lo ideal es dividir el proyecto en módulos esenciales (para que el software sea funcional desde el día 1) y módulos adicionales (para escalarlo y darle mayor valor).
+
+Módulos Esenciales (Fase MVP)
+Son los componentes indispensables para que los usuarios registren sus problemas y el equipo de TI los resuelva.
+
+Autenticación y Gestión de Usuarios: Control de acceso con roles bien definidos:
+
+Usuario Final (Cliente): Solicita ayuda y ve el estado de sus tickets.
+
+Técnico / Agente TI: Gestiona, asigna y resuelve tickets.
+
+Administrador: Configura categorías, permisos y parámetros del sistema.
+
+Gestión de Tickets (Módulo Central):
+
+Creación de solicitudes (título, descripción, prioridad, categoría, adjuntar archivos/capturas).
+
+Panel de control (Dashboard) con estados: Nuevo, En Proceso, En Espera, Resuelto, Cerrado.
+
+Asignación de tickets a técnicos específicos o grupos de soporte.
+
+Historial de seguimiento y comentarios internos/externos dentro de cada ticket.
+
+Notificaciones:
+
+Alertas por correo electrónico o dentro del sistema cuando se crea, actualiza o cierra un ticket.
+
+Panel de Control y Reportes Básicos:
+
+Métricas simples: número de tickets abiertos, tiempo promedio de respuesta y tickets cerrados por técnico.
+
+Módulos Adicionales (Fase de Crecimiento)
+Funcionalidades que automatizan procesos, mejoran la experiencia y hacen el software mucho más profesional.
+
+Base de Conocimiento / FAQ (Self-Service):
+
+Artículos y guías para que los usuarios resuelvan problemas comunes por sí mismos antes de abrir un ticket (reduce la carga de trabajo de TI).
+
+Gestión de Acuerdos de Nivel de Servicio (SLA):
+
+Definición de tiempos límite de respuesta y resolución según la prioridad (ej. prioridad Alta = respuesta en < 1 hora).
+
+Alertas automáticas cuando un ticket está a punto de vencer su SLA.
+
+Inventario de Activos de TI (CMDB / Asset Management):
+
+Vinculación de tickets a equipos físicos o software específicos (ej. vincular la falla a la "Laptop DELL-042").
+
+Automatización y Reglas de Enrutamiento:
+
+Asignación automática de tickets según la categoría (ej. todo lo de "Redes" se asigna automáticamente al especialista en redes).
+
+Encuestas de Satisfacción (CSAT):
+
+Envío automático de una breve calificación/encuesta al usuario cuando se cierra su ticket.
+
+Portal Multi-canal / Integraciones:
+
+Creación de tickets desde WhatsApp, Slack, Teams o integración con Active Directory / LDAP para inicio de sesión único (SSO).

@@ -1,0 +1,83 @@
+# Despliegue on-premise / interno (plan, sección 8). Neon Postgres queda FUERA de
+# este compose — es un servicio cloud externo; solo se referencia vía DATABASE_URL.
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  ai-service:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  ai-triage-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.triage_worker"]
+    depends_on:
+      - redis
+      - ai-service
+    restart: unless-stopped
+
+  # Genera los embeddings que alimentan la búsqueda semántica del Copilot al
+  # resolver/cerrar un ticket (plan `2.txt`, módulo 3) — sin este worker,
+  # ai_ticket_embeddings queda vacía y el Copilot nunca encuentra resultados.
+  ai-embedding-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.embedding_worker"]
+    depends_on:
+      - redis
+      - ai-service
+    restart: unless-stopped
+
+  # Revisa periódicamente los tickets abiertos recientes en busca de clústeres
+  # de incidentes similares — posible caída general (plan `2.txt`, módulo 4).
+  ai-anomaly-scheduler:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.anomaly_scheduler"]
+    depends_on:
+      - redis
+      - ai-service
+    restart: unless-stopped
+
+  # Genera borradores de artículos de la Base de Conocimiento a partir de
+  # tickets resueltos "complejos" — siempre pendientes de revisión humana
+  # antes de publicarse (plan `2.txt`, módulo 6).
+  ai-kb-generator-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.kb_generator_worker"]
+    depends_on:
+      - redis
+      - ai-service
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  redis-data:

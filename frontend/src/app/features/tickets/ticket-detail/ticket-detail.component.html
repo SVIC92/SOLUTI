@@ -1,0 +1,422 @@
+@if (ticket(); as t) {
+  <!-- Barra de cabecera: breadcrumb + badges + acciones de estado -->
+  <div class="bg-surface-card shadow-sm px-gutter py-space-md mb-space-md">
+    <div class="max-w-[1400px] mx-auto flex flex-col gap-space-sm">
+      <div class="flex flex-wrap items-center justify-between gap-space-sm">
+        <div class="flex items-center gap-space-sm">
+          <a routerLink="/tickets" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-2xs">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            <span>Tickets</span>
+          </a>
+          <span class="text-on-surface-variant/40">/</span>
+          <span class="font-headline-sm text-headline-sm text-on-surface">{{ t.code }}</span>
+          <div class="flex items-center gap-space-xs ml-space-sm">
+            <span class="px-space-sm py-space-2xs rounded-full font-label-sm text-label-sm" [ngClass]="priorityClasses(t.priority)">
+              {{ t.priority }}
+            </span>
+            <span class="px-space-sm py-space-2xs rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+              {{ t.status }}
+            </span>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-space-xs">
+          @if (isStaff && t.status !== 'RESOLVED') {
+            <button
+              type="button"
+              (click)="updateStatus('RESOLVED')"
+              class="px-space-md py-space-xs rounded-lg bg-status-resolved-bg hover:bg-emerald-100 text-status-resolved font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[16px]">task_alt</span>
+              <span>Marcar como Resuelto</span>
+            </button>
+          }
+          @if (isStaff && t.status !== 'CLOSED') {
+            <button
+              type="button"
+              (click)="updateStatus('CLOSED')"
+              class="px-space-sm py-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center gap-space-2xs transition-colors shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[16px]">close</span>
+              <span class="hidden md:inline">Cerrar</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <div>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface">{{ t.title }}</h1>
+        <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-xs mt-space-2xs">
+          <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+          <span>Abierto el {{ t.createdAt | date: 'medium' }}</span>
+        </p>
+      </div>
+
+      @if (loadError(); as error) {
+        <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+          {{ error }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="max-w-[1400px] w-full mx-auto px-gutter pb-space-2xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+      <!-- Columna principal -->
+      <div class="lg:col-span-8 flex flex-col gap-space-lg">
+        <!-- Encuesta CSAT (plan Fase 2): visible solo para el solicitante, tras el cierre -->
+        @if (t.status === 'CLOSED' && isRequester && survey()) {
+          <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+            @if (survey()?.respondedAt) {
+              <div class="flex items-center gap-space-sm">
+                <span class="material-symbols-outlined text-status-warning text-[20px]" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="font-label-lg text-label-lg text-on-surface font-semibold">
+                  ¡Gracias por tu calificación! ({{ survey()?.score }}/5)
+                </span>
+              </div>
+            } @else {
+              <span class="font-headline-sm text-headline-sm text-on-surface">¿Cómo fue tu experiencia con este ticket?</span>
+              <div class="flex items-center gap-space-xs">
+                @for (star of [1, 2, 3, 4, 5]; track star) {
+                  <button
+                    type="button"
+                    (click)="setRating(star)"
+                    class="material-symbols-outlined text-[32px] transition-colors"
+                    [class.text-status-warning]="star <= selectedRating()"
+                    [class.text-surface-container]="star > selectedRating()"
+                    [class.icon-filled]="star <= selectedRating()"
+                  >
+                    star
+                  </button>
+                }
+              </div>
+              <form [formGroup]="surveyForm" (ngSubmit)="submitSurvey()" class="flex flex-col gap-space-sm">
+                <textarea
+                  formControlName="comment"
+                  rows="2"
+                  placeholder="Comentario (opcional)..."
+                  class="w-full p-space-sm bg-surface-container-low rounded-lg outline-none resize-none font-body-sm text-body-sm"
+                ></textarea>
+                <button
+                  type="submit"
+                  [disabled]="selectedRating() === 0"
+                  class="self-end h-9 px-space-lg rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md font-semibold shadow-sm"
+                >
+                  Enviar Calificación
+                </button>
+              </form>
+            }
+          </div>
+        }
+
+        <!-- Descripción original -->
+        <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+          <div class="flex items-center justify-between pb-space-sm bg-surface-container-low/50 p-space-md rounded-lg">
+            <div class="flex flex-col">
+              <span class="font-headline-sm text-headline-sm text-on-surface">{{ t.createdBy?.fullName ?? 'Usuario' }}</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">{{ t.createdBy?.email }}</span>
+            </div>
+          </div>
+          <p class="font-body-lg text-body-lg text-on-surface leading-relaxed">{{ t.description }}</p>
+        </div>
+
+        <!-- Copilot para Técnicos (plan `2.txt`, módulo 3) — solo TECHNICIAN/ADMIN -->
+        @if (canUseCopilot) {
+          <div class="bg-gradient-to-br from-ai-purple-subtle via-surface-card to-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-ai-purple text-[20px]">auto_awesome</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface">Copilot para Técnicos</h3>
+            </div>
+
+            <form [formGroup]="copilotForm" class="space-y-space-sm">
+              <textarea
+                formControlName="notes"
+                rows="2"
+                placeholder="Notas breves sobre el diagnóstico o solución (ej. 'reinicié el router, limpié caché DNS')..."
+                class="w-full p-space-sm bg-surface-card rounded-lg outline-none resize-none font-body-sm text-body-sm shadow-sm"
+              ></textarea>
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <button
+                  type="button"
+                  (click)="searchSimilarTickets()"
+                  [disabled]="copilotForm.invalid || searchingSimilar()"
+                  class="h-9 px-space-md rounded-lg bg-surface-card hover:bg-surface-elevated disabled:opacity-50 text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-space-xs shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-[16px]">manage_search</span>
+                  {{ searchingSimilar() ? 'Buscando…' : 'Buscar tickets similares' }}
+                </button>
+                <button
+                  type="button"
+                  (click)="generateDraft()"
+                  [disabled]="copilotForm.invalid || generatingDraft()"
+                  class="h-9 px-space-md rounded-lg bg-ai-purple hover:bg-secondary disabled:opacity-50 text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-space-xs shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-[16px]">auto_fix_high</span>
+                  {{ generatingDraft() ? 'Generando…' : 'Generar borrador de respuesta' }}
+                </button>
+              </div>
+            </form>
+
+            @if (similarTickets().length > 0) {
+              <div class="space-y-space-xs">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Tickets similares ya resueltos</span>
+                @for (result of similarTickets(); track result.id) {
+                  <a [routerLink]="['/tickets', result.id]" class="block p-space-sm bg-surface-card rounded-lg shadow-sm hover:bg-surface-elevated transition-colors">
+                    <span class="font-code-mono text-code-mono text-primary font-semibold">{{ result.code }}</span>
+                    <span class="font-body-sm text-body-sm text-on-surface"> — {{ result.title }}</span>
+                  </a>
+                }
+              </div>
+            }
+
+            @if (copilotDraft(); as draft) {
+              <div class="p-space-md bg-surface-card rounded-lg shadow-sm space-y-space-sm">
+                <span class="font-label-sm text-label-sm text-ai-purple font-semibold uppercase tracking-wider">Borrador sugerido</span>
+                <p class="font-body-sm text-body-sm text-on-surface whitespace-pre-line">{{ draft }}</p>
+                <button
+                  type="button"
+                  (click)="insertDraftIntoReply()"
+                  class="h-8 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-space-xs"
+                >
+                  <span class="material-symbols-outlined text-[14px]">post_add</span>
+                  Insertar en respuesta
+                </button>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- Hilo de comentarios -->
+        <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+          <div class="flex items-center justify-between pb-space-xs">
+            <span class="font-headline-sm text-headline-sm text-on-surface">Historial de Interacciones ({{ t.comments?.length ?? 0 }})</span>
+          </div>
+
+          <div class="space-y-space-md">
+            @for (comment of t.comments; track comment.id) {
+              <div
+                class="p-space-md rounded-xl space-y-space-2xs"
+                [ngClass]="comment.isInternal ? 'bg-amber-50/70' : 'bg-surface-container-low'"
+              >
+                <div class="flex items-center justify-between font-label-sm text-label-sm">
+                  <div class="flex items-center gap-space-xs">
+                    <span class="font-semibold text-on-surface">{{ comment.author?.fullName ?? 'Usuario' }}</span>
+                    @if (comment.isInternal) {
+                      <span class="px-space-xs py-space-2xs bg-amber-200 text-amber-900 rounded text-[10px] uppercase font-bold">Nota Interna</span>
+                    }
+                  </div>
+                  <span class="text-on-surface-variant">{{ comment.createdAt | date: 'short' }}</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface">{{ comment.body }}</p>
+              </div>
+            } @empty {
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Sin comentarios todavía.</p>
+            }
+          </div>
+
+          <!-- Compositor de respuesta -->
+          <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="pt-space-md flex flex-col gap-space-sm">
+            <div class="flex items-center gap-space-xs bg-surface-container-low p-space-2xs rounded-lg w-fit">
+              <button
+                type="button"
+                (click)="toggleNoteType(false)"
+                class="px-space-md py-space-xs rounded-md font-label-md text-label-md transition-all flex items-center gap-space-2xs"
+                [class.bg-surface-card]="!isInternalNote()"
+                [class.text-primary]="!isInternalNote()"
+                [class.font-semibold]="!isInternalNote()"
+                [class.shadow-sm]="!isInternalNote()"
+                [class.text-on-surface-variant]="isInternalNote()"
+              >
+                <span class="material-symbols-outlined text-[16px]">chat</span>
+                <span>Respuesta al Usuario</span>
+              </button>
+              @if (isStaff) {
+                <button
+                  type="button"
+                  (click)="toggleNoteType(true)"
+                  class="px-space-md py-space-xs rounded-md font-label-md text-label-md transition-all flex items-center gap-space-2xs"
+                  [class.bg-surface-card]="isInternalNote()"
+                  [class.text-amber-800]="isInternalNote()"
+                  [class.font-semibold]="isInternalNote()"
+                  [class.shadow-sm]="isInternalNote()"
+                  [class.text-on-surface-variant]="!isInternalNote()"
+                >
+                  <span class="material-symbols-outlined text-[16px]">lock</span>
+                  <span>Nota Interna</span>
+                </button>
+              }
+            </div>
+
+            <textarea
+              formControlName="body"
+              rows="4"
+              [ngClass]="isInternalNote() ? 'bg-amber-50/50' : ''"
+              class="w-full bg-surface-container-low rounded-lg p-space-md font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant outline-none focus:bg-surface-card transition-all resize-y"
+              [placeholder]="isInternalNote() ? 'Nota técnica interna (solo visible para técnicos)...' : 'Escribe tu respuesta para el usuario...'"
+            ></textarea>
+
+            <div class="flex justify-end">
+              <button
+                type="submit"
+                [disabled]="commentForm.invalid"
+                class="px-space-lg py-space-xs rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-sm"
+              >
+                <span class="material-symbols-outlined text-[16px]">send</span>
+                <span>Enviar</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Columna lateral -->
+      <div class="lg:col-span-4 flex flex-col gap-space-lg">
+        <!-- Triaje IA (plan `2.txt`, módulos 1 y 5) — solo aparece si ai-service ya clasificó el ticket -->
+        @if (t.aiSuggestedCategory || t.aiSentimentScore !== null && t.aiSentimentScore !== undefined) {
+          <div class="bg-gradient-to-br from-ai-purple-subtle via-surface-card to-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-ai-purple text-[20px]">auto_awesome</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface">Análisis de Triaje IA</span>
+            </div>
+            @if (t.aiSuggestedCategory) {
+              <div class="flex items-center justify-between font-body-sm text-body-sm">
+                <span class="text-on-surface-variant">Categoría sugerida</span>
+                <span class="font-semibold text-on-surface">{{ t.aiSuggestedCategory }}</span>
+              </div>
+            }
+            @if (t.aiSuggestedPriority) {
+              <div class="flex items-center justify-between font-body-sm text-body-sm">
+                <span class="text-on-surface-variant">Prioridad sugerida</span>
+                <span class="px-space-xs py-space-2xs rounded font-label-sm text-label-sm font-semibold" [ngClass]="priorityClasses(t.aiSuggestedPriority)">
+                  {{ t.aiSuggestedPriority }}
+                </span>
+              </div>
+            }
+            @if (t.aiSentimentScore !== null && t.aiSentimentScore !== undefined) {
+              <div class="flex items-center justify-between font-body-sm text-body-sm">
+                <span class="text-on-surface-variant">Sentimiento del usuario</span>
+                <span class="flex items-center gap-space-2xs font-semibold" [ngClass]="sentimentClasses(t.aiSentimentScore)">
+                  <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1">{{ sentimentIcon(t.aiSentimentScore) }}</span>
+                  {{ sentimentLabel(t.aiSentimentScore) }}
+                </span>
+              </div>
+            }
+            @if (t.aiEtaMinutes) {
+              <div class="flex items-center justify-between font-body-sm text-body-sm">
+                <span class="text-on-surface-variant">ETA estimado</span>
+                <span class="font-semibold text-on-surface">{{ t.aiEtaMinutes }} min</span>
+              </div>
+            }
+          </div>
+        }
+
+        <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Parámetros del Ticket</span>
+          <div class="flex flex-col gap-space-2xs">
+            <label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Técnico Asignado</label>
+            <div class="p-space-sm bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface font-semibold">
+              {{ t.assignedTo?.fullName ?? 'Sin asignar' }}
+            </div>
+          </div>
+          <div class="flex flex-col gap-space-2xs">
+            <label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Categoría</label>
+            <div class="p-space-sm bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface font-semibold">
+              {{ t.category?.name ?? t.categoryId }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado de SLA (plan Fase 2) -->
+        @if (slaStatus(); as sla) {
+          <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between">
+              <span class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+                Acuerdo de Nivel de Servicio
+              </span>
+              @if (sla.policy) {
+                <span class="px-space-sm py-space-2xs rounded-full font-label-sm text-label-sm font-bold" [ngClass]="slaClasses()">
+                  @if (sla.resolutionBreached) {
+                    Vencido
+                  } @else if (sla.resolutionMinutesRemaining !== null) {
+                    {{ sla.resolutionMinutesRemaining }} min restantes
+                  }
+                </span>
+              }
+            </div>
+            @if (!sla.policy) {
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Sin política de SLA configurada para esta prioridad.</p>
+            } @else {
+              <div class="grid grid-cols-2 gap-space-sm font-body-sm text-body-sm">
+                <div class="p-space-sm bg-surface-container-low rounded-lg">
+                  <span class="text-on-surface-variant block font-label-sm text-label-sm">1ª Respuesta</span>
+                  <span class="text-on-surface font-semibold" [class.text-status-incident]="sla.firstResponseBreached">
+                    {{ sla.firstResponseBreached ? 'Incumplida' : 'En tiempo' }}
+                  </span>
+                </div>
+                <div class="p-space-sm bg-surface-container-low rounded-lg">
+                  <span class="text-on-surface-variant block font-label-sm text-label-sm">Resolución límite</span>
+                  <span class="text-on-surface font-semibold">{{ sla.resolutionDeadline | date: 'short' }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- Activo vinculado (CMDB, plan Fase 2) -->
+        <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+          <div class="flex items-center justify-between">
+            <span class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-[18px] text-primary">devices</span>
+              Activo Vinculado (CMDB)
+            </span>
+            @if (isStaff) {
+              <button type="button" (click)="toggleAssetPicker()" class="font-label-sm text-label-sm text-primary hover:underline">
+                {{ t.assetId ? 'Cambiar' : 'Vincular' }}
+              </button>
+            }
+          </div>
+
+          @if (t.asset; as asset) {
+            <div class="p-space-sm bg-surface-container-low rounded-lg">
+              <span class="font-label-md text-label-md text-on-surface font-semibold block">{{ asset.assetTag }}</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">{{ asset.type }}</span>
+            </div>
+          } @else {
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Sin activo vinculado.</p>
+          }
+
+          @if (isStaff && showAssetPicker()) {
+            <form [formGroup]="assetForm" (ngSubmit)="linkAsset()" class="flex items-center gap-space-xs pt-space-xs">
+              <select formControlName="assetId" class="flex-1 h-9 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+                <option value="" disabled>Selecciona un activo</option>
+                @for (asset of assets(); track asset.id) {
+                  <option [value]="asset.id">{{ asset.assetTag }} — {{ asset.type }}</option>
+                }
+              </select>
+              <button type="submit" [disabled]="assetForm.invalid" class="h-9 px-space-md rounded-lg bg-primary text-on-primary disabled:opacity-50 font-label-sm text-label-sm font-semibold">
+                Vincular
+              </button>
+            </form>
+          }
+        </div>
+
+        <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Historial de Cambios ({{ t.history?.length ?? 0 }})</span>
+          <div class="space-y-space-xs">
+            @for (entry of t.history; track entry.id) {
+              <div class="p-space-sm bg-surface-container-low rounded-lg font-body-sm text-body-sm">
+                <span class="font-semibold text-on-surface">{{ entry.field }}</span>
+                <span class="text-on-surface-variant"> {{ entry.oldValue }} → {{ entry.newValue }}</span>
+                <div class="font-label-sm text-label-sm text-on-surface-variant">{{ entry.createdAt | date: 'short' }}</div>
+              </div>
+            } @empty {
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Sin cambios registrados.</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <p class="p-space-lg font-body-md text-body-md text-on-surface-variant">Cargando ticket…</p>
+}

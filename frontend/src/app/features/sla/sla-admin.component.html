@@ -1,0 +1,59 @@
+<div class="px-margin py-space-xl max-w-[1100px] mx-auto w-full space-y-space-lg">
+  <div>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Acuerdos SLA & Métricas</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+      Define, por prioridad, el tiempo límite de primera respuesta y de resolución. Se aplica automáticamente a cada ticket nuevo según su prioridad.
+    </p>
+  </div>
+
+  @if (error(); as err) {
+    <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+      {{ err }}
+    </div>
+  }
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+    @for (priority of priorities; track priority) {
+      <div class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+        <div class="flex items-center justify-between">
+          <span class="px-space-sm py-space-2xs rounded-full font-label-sm text-label-sm font-bold" [ngClass]="priorityClasses(priority)">
+            {{ priorityLabel(priority) }}
+          </span>
+          @if (savedMessage() === priority) {
+            <span class="font-label-sm text-label-sm text-status-resolved flex items-center gap-space-2xs">
+              <span class="material-symbols-outlined text-[16px]">check_circle</span>
+              Guardado
+            </span>
+          }
+        </div>
+
+        <form [formGroup]="forms[priority]" (ngSubmit)="save(priority)" class="space-y-space-sm">
+          <div class="space-y-space-2xs">
+            <label class="font-label-md text-label-md text-on-surface font-semibold">Primera respuesta (minutos)</label>
+            <input
+              type="number"
+              min="1"
+              formControlName="firstResponseMins"
+              class="w-full h-10 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none"
+            />
+          </div>
+          <div class="space-y-space-2xs">
+            <label class="font-label-md text-label-md text-on-surface font-semibold">Resolución (minutos)</label>
+            <input
+              type="number"
+              min="1"
+              formControlName="resolutionMins"
+              class="w-full h-10 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full h-9 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-colors shadow-sm"
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="p-space-lg md:p-space-xl space-y-space-md">
+  <!-- Barra superior -->
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-card p-space-md rounded-xl shadow-sm">
+    <div class="flex flex-col">
+      <div class="flex items-center gap-space-sm">
+        <span class="p-space-xs rounded-lg bg-primary-container/10 text-primary-container">
+          <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+        </span>
+        <h1 class="font-headline-md text-headline-md text-on-surface">Gestión de Solicitudes y Tickets</h1>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">
+        {{ countFor()['ALL'] }} tickets registrados en el sistema.
+      </p>
+    </div>
+    <a
+      routerLink="/tickets/new"
+      class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+    >
+      <span class="material-symbols-outlined text-[18px]">add_circle</span>
+      + Nueva Solicitud / Ticket
+    </a>
+  </div>
+
+  <!-- Filtros y tabs -->
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden flex flex-col">
+    <div class="flex items-center overflow-x-auto bg-surface-container-low px-space-md py-space-2xs gap-space-xs">
+      @for (tab of statusTabs; track tab.key) {
+        <button
+          type="button"
+          (click)="setTab(tab.key)"
+          class="px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-space-xs transition-all"
+          [class.bg-surface-card]="activeTab() === tab.key"
+          [class.text-primary]="activeTab() === tab.key"
+          [class.font-semibold]="activeTab() === tab.key"
+          [class.shadow-sm]="activeTab() === tab.key"
+          [class.text-on-surface-variant]="activeTab() !== tab.key"
+        >
+          <span>{{ tab.label }}</span>
+          <span class="px-space-xs py-space-2xs rounded-full bg-surface-container text-on-surface font-code-mono text-label-sm">
+            {{ countFor()[tab.key] }}
+          </span>
+        </button>
+      }
+    </div>
+
+    <div class="p-space-md flex flex-wrap items-center gap-space-sm">
+      <div class="relative flex-1 min-w-[260px]">
+        <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+        <input
+          class="w-full h-8 pl-9 pr-8 bg-surface-container-low rounded-lg text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm outline-none focus:bg-surface-elevated transition-colors"
+          placeholder="Buscar por código (#TCK-...) o título..."
+          type="text"
+          [value]="searchTerm()"
+          (input)="onSearch($any($event.target).value)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left whitespace-nowrap">
+        <thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          <tr>
+            <th class="px-space-md py-space-sm">Ticket</th>
+            <th class="px-space-md py-space-sm">Asunto</th>
+            <th class="px-space-md py-space-sm">Prioridad</th>
+            <th class="px-space-md py-space-sm">Estado</th>
+            <th class="px-space-md py-space-sm text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="font-body-sm text-body-sm text-on-surface">
+          @for (ticket of filteredTickets(); track ticket.id) {
+            <tr class="hover:bg-surface-container-low/50 transition-colors border-t border-border-subtle">
+              <td class="px-space-md py-space-sm font-code-mono text-code-mono font-bold text-primary">{{ ticket.code }}</td>
+              <td class="px-space-md py-space-sm max-w-md">
+                <span class="font-label-md text-label-md text-on-surface font-semibold truncate block">{{ ticket.title }}</span>
+              </td>
+              <td class="px-space-md py-space-sm">
+                <span class="inline-flex items-center px-space-xs py-space-2xs rounded font-label-sm text-label-sm font-semibold" [ngClass]="priorityClasses(ticket.priority)">
+                  {{ ticket.priority }}
+                </span>
+              </td>
+              <td class="px-space-md py-space-sm">
+                <span class="px-space-xs py-space-2xs rounded font-label-sm text-label-sm font-medium" [ngClass]="statusClasses(ticket.status)">
+                  {{ ticket.status }}
+                </span>
+              </td>
+              <td class="px-space-md py-space-sm text-right">
+                <a [routerLink]="['/tickets', ticket.id]" class="p-space-2xs rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors inline-flex" title="Ver Detalle">
+                  <span class="material-symbols-outlined text-[18px]">visibility</span>
+                </a>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="px-space-md py-space-lg text-center text-on-surface-variant">No hay tickets que coincidan con el filtro actual.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

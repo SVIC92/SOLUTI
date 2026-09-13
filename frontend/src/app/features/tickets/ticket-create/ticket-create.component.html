@@ -1,0 +1,119 @@
+<div class="px-margin py-space-xl max-w-[1400px] mx-auto w-full space-y-space-lg">
+  <div>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+      Crear Nueva Solicitud de Soporte TI
+      <span class="inline-flex items-center gap-space-2xs px-space-sm py-0.5 rounded-full bg-ai-purple-subtle text-secondary font-label-sm text-label-sm font-semibold">
+        <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+        Triaje IA (Fase 4)
+      </span>
+    </h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+      Completa el formulario; el equipo de soporte será notificado automáticamente.
+    </p>
+  </div>
+
+  @if (error(); as err) {
+    <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+      {{ err }}
+    </div>
+  }
+
+  <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+    <!-- Formulario -->
+    <div class="xl:col-span-7 space-y-space-md">
+      <form [formGroup]="form" (ngSubmit)="submit()" class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+        <div class="flex items-center gap-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]">edit_document</span>
+          <h2 class="font-headline-sm text-headline-sm text-on-surface">Detalle de la Incidencia / Requerimiento</h2>
+        </div>
+
+        <div class="space-y-space-2xs">
+          <label class="font-label-md text-label-md text-on-surface font-semibold">Título del Caso *</label>
+          <input
+            formControlName="title"
+            type="text"
+            placeholder="Ej: No puedo acceder a la VPN de la empresa"
+            class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+          <div class="space-y-space-2xs">
+            <label class="font-label-md text-label-md text-on-surface font-semibold">Categoría *</label>
+            <select
+              formControlName="categoryId"
+              class="w-full h-10 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none cursor-pointer"
+            >
+              <option value="" disabled>Selecciona una categoría</option>
+              @for (category of categories(); track category.id) {
+                <option [value]="category.id">{{ category.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="space-y-space-2xs">
+            <label class="font-label-md text-label-md text-on-surface font-semibold">Prioridad *</label>
+            <select
+              formControlName="priority"
+              class="w-full h-10 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none cursor-pointer"
+            >
+              <option value="LOW">Baja (P4)</option>
+              <option value="MEDIUM">Media (P3)</option>
+              <option value="HIGH">Alta (P2)</option>
+              <option value="CRITICAL">Crítica (P1)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-space-2xs">
+          <label class="font-label-md text-label-md text-on-surface font-semibold">Descripción Detallada del Problema *</label>
+          <textarea
+            formControlName="description"
+            rows="6"
+            placeholder="Describe los pasos para reproducir la falla, mensajes de error y comportamiento esperado..."
+            class="w-full p-space-md bg-surface-canvas rounded-lg text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md outline-none resize-y focus:bg-surface-card transition-all shadow-sm"
+          ></textarea>
+        </div>
+
+        <div class="pt-space-md flex items-center justify-end gap-space-sm">
+          <button
+            type="submit"
+            [disabled]="form.invalid"
+            class="h-11 px-space-xl rounded-lg bg-primary-container hover:bg-primary disabled:opacity-50 text-on-primary font-headline-sm text-headline-sm shadow-md hover:shadow-lg flex items-center justify-center gap-space-sm transition-all"
+          >
+            <span class="material-symbols-outlined text-[20px]">send</span>
+            Enviar Solicitud
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Panel lateral IA (representativo — se conecta en Fase 4) -->
+    <div class="xl:col-span-5 space-y-space-md">
+      <div class="bg-gradient-to-br from-ai-purple-subtle via-surface-card to-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">psychology</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">Detección Automática por IA</h3>
+            <p class="font-label-sm text-label-sm text-secondary font-semibold">Disponible en Fase 4 (Triaje IA)</p>
+          </div>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          Cuando el servicio de IA esté activo, aquí verás la categoría, prioridad y sentimiento sugeridos automáticamente a partir de tu descripción.
+        </p>
+      </div>
+
+      <div class="p-space-md rounded-xl bg-surface-container-low text-on-surface-variant space-y-space-2xs shadow-sm">
+        <div class="flex items-center gap-space-xs text-on-surface font-label-md text-label-md font-semibold">
+          <span class="material-symbols-outlined text-[16px] text-primary">policy</span>
+          Política de Seguridad TI
+        </div>
+        <p class="font-body-sm text-body-sm leading-relaxed">
+          Nunca compartas contraseñas ni claves privadas en la descripción o adjuntos.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

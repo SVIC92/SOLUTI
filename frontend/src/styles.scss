@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset/base tomado literalmente de las pantallas exportadas de Stitch, para que el
+   look & feel (NovaDesk AI design system) sea idéntico al de los mockups. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: theme('colors.surface-canvas');
+  font-family: 'Inter', sans-serif;
+}
+body {
+  overscroll-behavior: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Iconos Material Symbols Outlined usados en todo el sistema de diseño */
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* Variante "rellena" (ej. estrellas de calificación CSAT seleccionadas) */
+.icon-filled {
+  font-variation-settings:
+    'FILL' 1,
+    'GRAD' 0,
+    'opsz' 24;
+}

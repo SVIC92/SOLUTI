@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+*.log
+
+# Backend (Nest/Prisma)
+backend/.env
+backend/src/generated/
+
+# Angular
+frontend/.angular/
+
+# Python (ai-service)
+services/ai-service/__pycache__/
+services/ai-service/**/__pycache__/
+services/ai-service/.venv/
+services/ai-service/.env
+
+# Editores / SO
+.vscode/
+.DS_Store
+Thumbs.db

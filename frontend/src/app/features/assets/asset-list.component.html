@@ -1,0 +1,85 @@
+<div class="px-margin py-space-xl max-w-[1200px] mx-auto w-full space-y-space-lg">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+    <div>
+      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Inventario de Activos de TI (CMDB)</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Equipos y software que pueden vincularse a un ticket para diagnóstico y seguimiento.
+      </p>
+    </div>
+    @if (isStaff) {
+      <button
+        type="button"
+        (click)="toggleForm()"
+        class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[18px]">add_circle</span>
+        + Nuevo Activo
+      </button>
+    }
+  </div>
+
+  @if (error(); as err) {
+    <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+      {{ err }}
+    </div>
+  }
+
+  @if (isStaff && showForm()) {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="bg-surface-card rounded-xl p-space-lg shadow-sm grid grid-cols-1 sm:grid-cols-3 gap-space-md items-end">
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Etiqueta del Activo *</label>
+        <input formControlName="assetTag" placeholder="Ej. DELL-042" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm" />
+      </div>
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Tipo *</label>
+        <select formControlName="type" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+          <option value="laptop">Laptop</option>
+          <option value="servidor">Servidor</option>
+          <option value="impresora">Impresora</option>
+          <option value="software">Software</option>
+          <option value="red">Equipo de Red</option>
+        </select>
+      </div>
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Usuario Asignado</label>
+        <input formControlName="assignedUser" placeholder="Opcional" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm" />
+      </div>
+      <div class="sm:col-span-3 flex justify-end">
+        <button type="submit" [disabled]="form.invalid" class="h-9 px-space-lg rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md font-semibold shadow-sm">
+          Registrar Activo
+        </button>
+      </div>
+    </form>
+  }
+
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+    <table class="w-full text-left">
+      <thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+        <tr>
+          <th class="px-space-md py-space-sm">Etiqueta</th>
+          <th class="px-space-md py-space-sm">Tipo</th>
+          <th class="px-space-md py-space-sm">Usuario Asignado</th>
+          <th class="px-space-md py-space-sm">Estado</th>
+        </tr>
+      </thead>
+      <tbody class="font-body-sm text-body-sm text-on-surface">
+        @for (asset of assets(); track asset.id) {
+          <tr class="border-t border-border-subtle hover:bg-surface-container-low/50 transition-colors">
+            <td class="px-space-md py-space-sm font-code-mono text-code-mono font-bold text-primary">{{ asset.assetTag }}</td>
+            <td class="px-space-md py-space-sm">{{ asset.type }}</td>
+            <td class="px-space-md py-space-sm">{{ asset.assignedUser ?? '—' }}</td>
+            <td class="px-space-md py-space-sm">
+              <span class="px-space-xs py-space-2xs rounded font-label-sm text-label-sm font-medium" [ngClass]="statusClasses(asset.status)">
+                {{ asset.status }}
+              </span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="px-space-md py-space-lg text-center text-on-surface-variant">Sin activos registrados todavía.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

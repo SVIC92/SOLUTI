@@ -1,0 +1,89 @@
+<div class="px-margin py-space-xl max-w-[900px] mx-auto w-full space-y-space-lg">
+  <a routerLink="/knowledge-base" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-2xs w-fit">
+    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+    <span>Base de Conocimiento</span>
+  </a>
+
+  @if (error(); as err) {
+    <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+      {{ err }}
+    </div>
+  }
+
+  @if (isNew || editing()) {
+    <!-- Modo edición / creación -->
+    <form [formGroup]="form" (ngSubmit)="submit()" class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+      <h1 class="font-headline-lg text-headline-lg text-on-surface">{{ isNew ? 'Nuevo Artículo' : 'Editar Artículo' }}</h1>
+
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Título *</label>
+        <input formControlName="title" type="text" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm" />
+      </div>
+
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Categoría</label>
+        <select formControlName="categoryId" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+          <option value="">Sin categoría</option>
+          @for (category of categories(); track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Contenido *</label>
+        <textarea formControlName="content" rows="10" class="w-full p-space-md bg-surface-canvas rounded-lg outline-none shadow-sm resize-y"></textarea>
+      </div>
+
+      @if (!isNew) {
+        <label class="flex items-center gap-space-xs cursor-pointer w-fit">
+          <input type="checkbox" formControlName="isPublished" class="w-4 h-4 rounded accent-primary" />
+          <span class="font-label-md text-label-md text-on-surface">Publicado (visible para todos los usuarios)</span>
+        </label>
+      }
+
+      <div class="flex items-center justify-end gap-space-sm pt-space-xs">
+        @if (!isNew) {
+          <button type="button" (click)="toggleEdit()" class="h-9 px-space-lg rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md">
+            Cancelar
+          </button>
+        }
+        <button type="submit" [disabled]="form.invalid" class="h-9 px-space-lg rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md font-semibold shadow-sm">
+          {{ isNew ? 'Crear Artículo' : 'Guardar Cambios' }}
+        </button>
+      </div>
+    </form>
+  } @else if (article()) {
+    <!-- Modo vista -->
+    @let a = article()!;
+    <div class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+      <div class="flex items-start justify-between gap-space-sm">
+        <div>
+          <div class="flex items-center gap-space-xs mb-space-2xs">
+            @if (a.articleDraftGeneratedByAi) {
+              <span class="px-space-xs py-space-2xs rounded bg-ai-purple-subtle text-ai-purple font-label-sm text-label-sm font-semibold">Generado por IA</span>
+            }
+            @if (a.isPublished) {
+              <span class="px-space-xs py-space-2xs rounded bg-status-resolved-bg text-status-resolved font-label-sm text-label-sm font-semibold">Publicado</span>
+            } @else {
+              <span class="px-space-xs py-space-2xs rounded bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-semibold">Borrador</span>
+            }
+          </div>
+          <h1 class="font-headline-lg text-headline-lg text-on-surface">{{ a.title }}</h1>
+          @if (a.category) {
+            <span class="font-label-sm text-label-sm text-on-surface-variant">{{ a.category.name }}</span>
+          }
+        </div>
+        @if (canManage) {
+          <button type="button" (click)="toggleEdit()" class="h-9 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-space-xs shrink-0">
+            <span class="material-symbols-outlined text-[16px]">edit</span>
+            Editar
+          </button>
+        }
+      </div>
+      <p class="font-body-lg text-body-lg text-on-surface leading-relaxed whitespace-pre-line">{{ a.content }}</p>
+    </div>
+  } @else {
+    <p class="font-body-md text-body-md text-on-surface-variant">Cargando artículo…</p>
+  }
+</div>

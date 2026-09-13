@@ -1,0 +1,97 @@
+<div class="flex flex-col w-full">
+  <div class="px-margin pt-space-md pb-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+    <div>
+      <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-status-resolved animate-pulse"></span>
+        <span>Centro de Operaciones TI</span>
+      </div>
+      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-space-2xs">Panel de Control & Resumen Operativo</h1>
+    </div>
+    <div class="flex items-center gap-space-xs">
+      <a
+        routerLink="/tickets/new"
+        class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary rounded-xl shadow-md hover:bg-primary transition-all font-label-md text-label-md font-semibold"
+      >
+        <span class="material-symbols-outlined text-[16px]">add</span>
+        <span>Crear Ticket</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="px-margin space-y-space-md pb-space-2xl">
+    @if (metrics) {
+      <!-- KPI grid: las dos primeras usan datos reales de /reports/dashboard -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+        <div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Tickets Abiertos</span>
+            <span class="p-space-2xs bg-surface-container rounded-lg text-primary">
+              <span class="material-symbols-outlined text-[18px]">confirmation_number</span>
+            </span>
+          </div>
+          <div class="mt-space-sm">
+            <span class="font-display text-display text-on-surface leading-none">{{ metrics.openTickets }}</span>
+          </div>
+        </div>
+
+        <div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Tiempo Medio 1ª Respuesta</span>
+            <span class="p-space-2xs bg-status-resolved-bg rounded-lg text-status-resolved">
+              <span class="material-symbols-outlined text-[18px]">timer</span>
+            </span>
+          </div>
+          <div class="mt-space-sm">
+            <span class="font-display text-display text-on-surface leading-none">
+              {{ metrics.avgFirstResponseMinutes ? (metrics.avgFirstResponseMinutes | number: '1.0-0') : '—' }}
+              <span class="text-headline-sm font-normal text-on-surface-variant">min</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Técnicos con Cierres</span>
+            <span class="p-space-2xs bg-surface-container rounded-lg text-tertiary">
+              <span class="material-symbols-outlined text-[18px]">groups</span>
+            </span>
+          </div>
+          <div class="mt-space-sm">
+            <span class="font-display text-display text-on-surface leading-none">{{ metrics.closedByTechnician.length }}</span>
+          </div>
+        </div>
+
+        <!-- Autonomía IA: se conectará cuando el módulo de triaje (ai-service) esté en producción -->
+        <div class="bg-gradient-to-br from-surface-card via-surface-card to-ai-purple-subtle rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between">
+            <span class="font-label-sm text-label-sm text-ai-purple font-semibold uppercase tracking-wide">Autonomía IA</span>
+            <span class="p-space-2xs bg-ai-purple-subtle rounded-lg text-ai-purple">
+              <span class="material-symbols-outlined text-[18px]">smart_toy</span>
+            </span>
+          </div>
+          <div class="mt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+            Disponible cuando se active el módulo de Triaje IA (Fase 4).
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de tickets: acceso directo al módulo real de Gestión de Tickets -->
+      <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden flex flex-col">
+        <div class="px-space-md py-space-sm flex items-center justify-between bg-surface-card">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-primary text-[20px]">confirmation_number</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Tickets</h2>
+          </div>
+          <a routerLink="/tickets" class="px-space-sm py-space-2xs text-primary hover:bg-surface-container-low font-label-sm text-label-sm rounded-lg transition-colors">
+            Ver todos →
+          </a>
+        </div>
+        <div class="p-space-md bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm">
+          Ve a <a routerLink="/tickets" class="text-primary font-semibold hover:underline">Gestión de Tickets</a> para el listado completo con filtros por estado, prioridad y técnico.
+        </div>
+      </div>
+    } @else {
+      <p class="font-body-md text-body-md text-on-surface-variant">Cargando métricas…</p>
+    }
+  </div>
+</div>

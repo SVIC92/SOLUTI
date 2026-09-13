@@ -1,0 +1,157 @@
+<div class="bg-surface-canvas font-body-md text-body-md text-on-surface antialiased">
+  <aside class="fixed left-0 top-0 h-full w-64 bg-surface-card z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 px-gutter flex items-center gap-space-sm bg-surface-card">
+      <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+        <span class="material-symbols-outlined text-[20px]">neurology</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight">NovaDesk</span>
+        <span class="font-label-sm text-label-sm text-ai-purple">Enterprise Ops</span>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-space-sm py-space-xs space-y-space-xs overflow-y-auto">
+      <div class="px-space-sm pt-space-xs pb-space-2xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+        Operaciones
+      </div>
+      @for (item of visibleOperations; track item.label) {
+        @if (item.path) {
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
+            [routerLinkActiveOptions]="{ exact: false }"
+            class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+          >
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]" [class.text-ai-purple]="item.aiIcon">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+            @if (item.badge) {
+              <span class="font-label-sm text-label-sm px-space-xs py-space-2xs bg-ai-purple-subtle text-ai-purple rounded-full font-semibold">{{ item.badge }}</span>
+            }
+          </a>
+        } @else {
+          <div
+            class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant/50 cursor-not-allowed"
+            title="Módulo en construcción"
+          >
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]" [class.text-ai-purple]="item.aiIcon">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+            @if (item.badge) {
+              <span class="font-label-sm text-label-sm px-space-xs py-space-2xs bg-ai-purple-subtle text-ai-purple rounded-full font-semibold">{{ item.badge }}</span>
+            }
+          </div>
+        }
+      }
+
+      <div class="px-space-sm pt-space-md pb-space-2xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+        Gestión TI
+      </div>
+      @for (item of visibleManagement; track item.label) {
+        @if (item.path) {
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
+            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+          >
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+          </a>
+        } @else {
+          <div class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant/50 cursor-not-allowed" title="Módulo en construcción">
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+          </div>
+        }
+      }
+
+      <div class="px-space-sm pt-space-md pb-space-2xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+        Sistema
+      </div>
+      @for (item of visibleSystem; track item.label) {
+        @if (item.path) {
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
+            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+          >
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+          </a>
+        } @else {
+          <div class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant/50 cursor-not-allowed" title="Módulo en construcción">
+            <div class="flex items-center gap-space-md">
+              <span class="material-symbols-outlined text-[18px]">{{ item.icon }}</span>
+              <span class="font-label-lg text-label-lg">{{ item.label }}</span>
+            </div>
+          </div>
+        }
+      }
+    </nav>
+
+    <div class="p-space-md bg-surface-container-low">
+      <div class="p-space-sm bg-surface-card rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-2 h-2 rounded-full bg-status-resolved"></div>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm text-on-surface font-semibold">Gateway API</span>
+            <span class="font-label-sm text-label-sm text-status-resolved">Conectado</span>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-on-surface-variant text-[16px]">cloud_done</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="pl-64">
+    <header class="fixed top-0 left-64 right-0 h-16 bg-surface-card/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-gutter flex items-center justify-between">
+      <div class="flex items-center gap-space-md flex-1 max-w-2xl">
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+          <input
+            class="w-full h-9 pl-10 pr-16 bg-surface-container-low rounded-xl text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm outline-none focus:bg-surface-card transition-all"
+            placeholder="Buscar ticket #, usuario, activo o solución..."
+            type="text"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center gap-space-md">
+        <div class="hidden md:flex items-center gap-space-xs px-space-sm py-space-xs bg-ai-purple-subtle text-ai-purple rounded-xl cursor-pointer hover:bg-secondary-fixed transition-colors">
+          <span class="material-symbols-outlined text-[16px]">bolt</span>
+          <span class="font-label-sm text-label-sm font-semibold">Acciones IA</span>
+        </div>
+        <div class="relative cursor-pointer">
+          <div class="p-space-xs rounded-xl bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">notifications</span>
+          </div>
+        </div>
+        <div class="h-6 w-[1px] bg-surface-container"></div>
+        <div class="flex items-center gap-space-sm pl-space-xs">
+          <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-semibold text-label-sm">
+            {{ (auth.currentUser?.email ?? '?').charAt(0).toUpperCase() }}
+          </div>
+          <div class="hidden lg:flex flex-col text-left">
+            <span class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">{{ auth.currentUser?.email }}</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">{{ auth.currentUser?.role }}</span>
+          </div>
+          <button type="button" (click)="logout()" class="p-space-xs rounded-xl text-on-surface-variant hover:text-error hover:bg-error-container transition-colors flex items-center justify-center" title="Cerrar sesión">
+            <span class="material-symbols-outlined text-[18px]">logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="w-full pt-16 bg-surface-canvas min-h-screen">
+      <router-outlet />
+    </main>
+  </div>
+</div>

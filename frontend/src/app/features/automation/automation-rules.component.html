@@ -1,0 +1,126 @@
+<div class="px-margin py-space-xl max-w-[1000px] mx-auto w-full space-y-space-lg">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+    <div>
+      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+        <span class="material-symbols-outlined text-primary text-[24px]">alt_route</span>
+        Automatización y Reglas de Enrutamiento
+      </h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Asigna automáticamente cada ticket nuevo a un técnico o grupo según su categoría.
+      </p>
+    </div>
+    <button
+      type="button"
+      (click)="toggleForm()"
+      class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+    >
+      <span class="material-symbols-outlined text-[18px]">add_circle</span>
+      + Nueva Regla
+    </button>
+  </div>
+
+  @if (error(); as err) {
+    <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+      {{ err }}
+    </div>
+  }
+
+  @if (showForm()) {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="bg-surface-card rounded-xl p-space-lg shadow-sm grid grid-cols-1 sm:grid-cols-4 gap-space-md items-end">
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Categoría *</label>
+        <select formControlName="categoryId" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+          <option value="" disabled>Selecciona...</option>
+          @for (category of categories(); track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="space-y-space-2xs">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Asignar a *</label>
+        <select formControlName="targetType" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+          <option value="group">Grupo de Soporte</option>
+          <option value="user">Técnico Específico</option>
+        </select>
+      </div>
+
+      <div class="space-y-space-2xs sm:col-span-2">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Destino *</label>
+        @if (form.value.targetType === 'user') {
+          <select formControlName="targetId" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+            <option value="" disabled>Selecciona un técnico</option>
+            @for (tech of technicians(); track tech.id) {
+              <option [value]="tech.id">{{ tech.fullName }}</option>
+            }
+          </select>
+        } @else {
+          <select formControlName="targetId" class="w-full h-10 px-space-md bg-surface-canvas rounded-lg outline-none shadow-sm cursor-pointer">
+            <option value="" disabled>Selecciona un grupo</option>
+            @for (group of groups(); track group.id) {
+              <option [value]="group.id">{{ group.name }}</option>
+            }
+          </select>
+        }
+      </div>
+
+      <div class="sm:col-span-4 flex justify-end">
+        <button type="submit" [disabled]="form.invalid" class="h-9 px-space-lg rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md font-semibold shadow-sm">
+          Crear Regla
+        </button>
+      </div>
+    </form>
+  }
+
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+    <table class="w-full text-left">
+      <thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+        <tr>
+          <th class="px-space-md py-space-sm">Categoría</th>
+          <th class="px-space-md py-space-sm">Se asigna a</th>
+          <th class="px-space-md py-space-sm">Estado</th>
+          <th class="px-space-md py-space-sm text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="font-body-sm text-body-sm text-on-surface">
+        @for (rule of rules(); track rule.id) {
+          <tr class="border-t border-border-subtle hover:bg-surface-container-low/50 transition-colors">
+            <td class="px-space-md py-space-sm font-label-md text-label-md font-semibold">{{ rule.category.name }}</td>
+            <td class="px-space-md py-space-sm">
+              @if (rule.assignToGroup) {
+                <span class="flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[16px] text-primary">groups</span>
+                  {{ rule.assignToGroup.name }}
+                </span>
+              } @else if (rule.assignToUserId) {
+                <span class="flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[16px] text-primary">person</span>
+                  Técnico #{{ rule.assignToUserId.slice(0, 8) }}
+                </span>
+              }
+            </td>
+            <td class="px-space-md py-space-sm">
+              <button
+                type="button"
+                (click)="toggleActive(rule)"
+                class="px-space-xs py-space-2xs rounded font-label-sm text-label-sm font-semibold"
+                [ngClass]="rule.isActive ? 'bg-status-resolved-bg text-status-resolved' : 'bg-surface-container text-on-surface-variant'"
+              >
+                {{ rule.isActive ? 'Activa' : 'Inactiva' }}
+              </button>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <button type="button" (click)="delete(rule)" class="p-space-2xs rounded hover:bg-surface-container text-on-surface-variant hover:text-error transition-colors" title="Eliminar regla">
+                <span class="material-symbols-outlined text-[18px]">delete_outline</span>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="px-space-md py-space-lg text-center text-on-surface-variant">Sin reglas de enrutamiento configuradas todavía.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

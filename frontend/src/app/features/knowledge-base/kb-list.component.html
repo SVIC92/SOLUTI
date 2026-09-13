@@ -1,0 +1,66 @@
+<div class="px-margin py-space-xl max-w-[1100px] mx-auto w-full space-y-space-lg">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+    <div>
+      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+        <span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+        Base de Conocimiento
+      </h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Busca artículos de autoayuda antes de abrir un ticket.
+      </p>
+    </div>
+    @if (canManage) {
+      <a
+        routerLink="/knowledge-base/new"
+        class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[18px]">add_circle</span>
+        + Nuevo Artículo
+      </a>
+    }
+  </div>
+
+  <div class="relative">
+    <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+    <input
+      class="w-full h-11 pl-11 pr-space-md bg-surface-card rounded-xl text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md outline-none shadow-sm"
+      placeholder="Buscar por título o contenido..."
+      type="text"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </div>
+
+  <div class="space-y-space-sm">
+    @for (article of articles(); track article.id) {
+      <a
+        [routerLink]="['/knowledge-base', article.id]"
+        class="block p-space-md rounded-xl bg-surface-card hover:bg-surface-elevated transition-all shadow-sm group"
+      >
+        <div class="flex items-start justify-between gap-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-primary text-[18px]">description</span>
+            <span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+              {{ article.title }}
+            </span>
+          </div>
+          <div class="flex items-center gap-space-xs shrink-0">
+            @if (article.articleDraftGeneratedByAi) {
+              <span class="px-space-xs py-space-2xs rounded bg-ai-purple-subtle text-ai-purple font-label-sm text-label-sm font-semibold">IA</span>
+            }
+            @if (article.isPublished) {
+              <span class="px-space-xs py-space-2xs rounded bg-status-resolved-bg text-status-resolved font-label-sm text-label-sm font-semibold">Publicado</span>
+            } @else {
+              <span class="px-space-xs py-space-2xs rounded bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-semibold">Borrador</span>
+            }
+          </div>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs line-clamp-2">{{ article.content }}</p>
+      </a>
+    } @empty {
+      <div class="p-space-lg text-center bg-surface-card rounded-xl shadow-sm text-on-surface-variant">
+        No hay artículos que coincidan con tu búsqueda.
+      </div>
+    }
+  </div>
+</div>

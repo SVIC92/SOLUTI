@@ -1,0 +1,307 @@
+// Esquema del núcleo del Help Desk (Prisma). Las tablas de IA (prefijo ai_*) NO viven
+// aquí — son propiedad del servicio Python (services/ai-service), migradas con Alembic,
+// y el core solo las lee vía consultas raw / vistas. Ver plan: sección 2.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Auth / Usuarios
+// ---------------------------------------------------------------------------
+
+enum RoleName {
+  FINAL_USER
+  TECHNICIAN
+  ADMIN
+}
+
+enum AuthProvider {
+  LOCAL
+  LDAP
+  AD
+  SERVICE // usuarios técnicos especiales (ej. el chatbot actuando como agente)
+  // Portal Multi-canal (plan `1.txt`, Fase 2 final): usuarios "sombra" creados
+  // automáticamente cuando alguien escribe por primera vez desde ese canal —
+  // nunca tienen `passwordHash` ni pueden hacer login local, solo se identifican
+  // por (authProvider, externalId). Ver modules/channels.
+  WHATSAPP
+  SLACK
+  TEAMS
+}
+
+model Role {
+  id    Int        @id @default(autoincrement())
+  name  RoleName   @unique
+  users User[]
+}
+
+model SupportGroup {
+  id      String @id @default(uuid())
+  name    String @unique // ej. Redes, Hardware, Software, Cuentas
+  members User[]
+
+  categories        Category[]
+  tickets           Ticket[]
+  automationRules   AutomationRule[]
+
+  @@map("support_groups")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String?      @map("password_hash") // null cuando authProvider != LOCAL
+  fullName     String       @map("full_name")
+  isActive     Boolean      @default(true) @map("is_active")
+  roleId       Int          @map("role_id")
+  role         Role         @relation(fields: [roleId], references: [id])
+  groupId      String?      @map("group_id")
+  group        SupportGroup? @relation(fields: [groupId], references: [id])
+  authProvider AuthProvider @default(LOCAL) @map("auth_provider")
+  externalId   String?      @map("external_id") // sub/uid de LDAP/AD cuando aplique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  ticketsCreated  Ticket[]        @relation("CreatedBy")
+  ticketsAssigned Ticket[]        @relation("AssignedTo")
+  comments        Comment[]
+  attachments     Attachment[]
+  notifications   Notification[]
+  ticketHistory   TicketHistory[]
+
+  // Evita duplicar la cuenta "sombra" de un mismo contacto de WhatsApp/Slack/Teams
+  // (o el mismo usuario de AD/LDAP) si escribe/inicia sesión más de una vez.
+  // NULLs no chocan entre sí en Postgres, así que los usuarios LOCAL (sin
+  // externalId) no se ven afectados por este índice.
+  @@unique([authProvider, externalId])
+  @@map("users")
+}
+
+// ---------------------------------------------------------------------------
+// Categorías / Tickets (módulo central)
+// ---------------------------------------------------------------------------
+
+model Category {
+  id             String        @id @default(uuid())
+  name           String        @unique
+  defaultGroupId String?       @map("default_group_id") // para auto-enrutamiento (Fase 2)
+  defaultGroup   SupportGroup? @relation(fields: [defaultGroupId], references: [id])
+
+  tickets         Ticket[]
+  automationRules AutomationRule[]
+  knowledgeArticles KnowledgeArticle[]
+
+  @@map("categories")
+}
+
+enum TicketStatus {
+  NEW
+  IN_PROGRESS
+  ON_HOLD
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model Ticket {
+  id     String @id @default(uuid())
+  code   String @unique // ej. TCK-000123 (secuencia legible, generada en servicio)
+  title  String
+  description String
+
+  status   TicketStatus   @default(NEW)
+  priority TicketPriority @default(MEDIUM)
+
+  categoryId String   @map("category_id")
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  createdById String @map("created_by_id")
+  createdBy   User   @relation("CreatedBy", fields: [createdById], references: [id])
+
+  assignedToId String? @map("assigned_to_id")
+  assignedTo   User?   @relation("AssignedTo", fields: [assignedToId], references: [id])
+
+  assignedGroupId String?       @map("assigned_group_id")
+  assignedGroup   SupportGroup? @relation(fields: [assignedGroupId], references: [id])
+
+  assetId      String? @map("asset_id") // vínculo CMDB (Fase 2)
+  asset        Asset?  @relation(fields: [assetId], references: [id])
+  slaPolicyId  String? @map("sla_policy_id") // vínculo SLA (Fase 2)
+  slaPolicy    SlaPolicy? @relation(fields: [slaPolicyId], references: [id])
+
+  firstResponseAt DateTime? @map("first_response_at")
+  resolvedAt      DateTime? @map("resolved_at")
+  closedAt        DateTime? @map("closed_at")
+
+  // --- IA hook: campos de solo-lectura, rellenados de forma asíncrona por ai-service
+  // vía PATCH /api/v1/tickets/:id/ai-metadata. El core nunca los calcula.
+  aiSuggestedCategory String?         @map("ai_suggested_category")
+  aiSuggestedPriority TicketPriority? @map("ai_suggested_priority")
+  aiSentimentScore    Float?          @map("ai_sentiment_score")
+  aiSummary           String?         @map("ai_summary")
+  aiEtaMinutes        Int?            @map("ai_eta_minutes")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  comments    Comment[]
+  attachments Attachment[]
+  history     TicketHistory[]
+  survey      Survey?
+  notifications Notification[]
+
+  @@index([status, priority])
+  @@index([assignedToId])
+  @@index([createdById])
+  @@map("tickets")
+}
+
+model TicketHistory {
+  id          String   @id @default(uuid())
+  ticketId    String   @map("ticket_id")
+  ticket      Ticket   @relation(fields: [ticketId], references: [id])
+  changedById String   @map("changed_by_id")
+  changedBy   User     @relation(fields: [changedById], references: [id])
+  field       String // "status", "priority", "assignedTo", ...
+  oldValue    String?  @map("old_value")
+  newValue    String?  @map("new_value")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([ticketId])
+  @@map("ticket_history")
+}
+
+model Comment {
+  id         String   @id @default(uuid())
+  ticketId   String   @map("ticket_id")
+  ticket     Ticket   @relation(fields: [ticketId], references: [id])
+  authorId   String   @map("author_id")
+  author     User     @relation(fields: [authorId], references: [id])
+  body       String
+  isInternal Boolean  @default(false) @map("is_internal") // true = solo visible para técnicos/admin
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([ticketId])
+  @@map("comments")
+}
+
+model Attachment {
+  id           String   @id @default(uuid())
+  ticketId     String   @map("ticket_id")
+  ticket       Ticket   @relation(fields: [ticketId], references: [id])
+  fileName     String   @map("file_name")
+  storagePath  String   @map("storage_path")
+  mimeType     String   @map("mime_type")
+  sizeBytes    Int      @map("size_bytes")
+  uploadedById String   @map("uploaded_by_id")
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([ticketId])
+  @@map("attachments")
+}
+
+// ---------------------------------------------------------------------------
+// Notificaciones
+// ---------------------------------------------------------------------------
+
+enum NotificationChannel {
+  EMAIL
+  IN_APP
+}
+
+model Notification {
+  id        String              @id @default(uuid())
+  userId    String              @map("user_id")
+  user      User                @relation(fields: [userId], references: [id])
+  ticketId  String?             @map("ticket_id")
+  ticket    Ticket?             @relation(fields: [ticketId], references: [id])
+  channel   NotificationChannel
+  title     String
+  body      String
+  isRead    Boolean             @default(false) @map("is_read")
+  createdAt DateTime            @default(now()) @map("created_at")
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+// ---------------------------------------------------------------------------
+// Fase 2 — Crecimiento
+// ---------------------------------------------------------------------------
+
+model SlaPolicy {
+  id                String         @id @default(uuid())
+  priority          TicketPriority @unique
+  firstResponseMins Int            @map("first_response_mins")
+  resolutionMins    Int            @map("resolution_mins")
+  tickets           Ticket[]
+
+  @@map("sla_policies")
+}
+
+model Asset {
+  id           String   @id @default(uuid())
+  assetTag     String   @unique @map("asset_tag") // ej. DELL-042
+  type         String // laptop, servidor, impresora, software
+  assignedUser String?  @map("assigned_user")
+  status       String // activo, en reparación, dado de baja
+  tickets      Ticket[]
+
+  @@map("assets")
+}
+
+model KnowledgeArticle {
+  id          String    @id @default(uuid())
+  title       String
+  content     String
+  categoryId  String?   @map("category_id")
+  category    Category? @relation(fields: [categoryId], references: [id])
+  isPublished Boolean   @default(false) @map("is_published")
+  authorId    String    @map("author_id")
+
+  // IA hook: se marca true cuando el artículo nace como borrador del generador de KB (ai_kb_drafts)
+  articleDraftGeneratedByAi Boolean @default(false) @map("article_draft_generated_by_ai")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("knowledge_articles")
+}
+
+model AutomationRule {
+  id              String        @id @default(uuid())
+  categoryId      String        @map("category_id")
+  category        Category      @relation(fields: [categoryId], references: [id])
+  assignToGroupId String?       @map("assign_to_group_id")
+  assignToGroup   SupportGroup? @relation(fields: [assignToGroupId], references: [id])
+  assignToUserId  String?       @map("assign_to_user_id")
+  isActive        Boolean       @default(true) @map("is_active")
+
+  @@map("automation_rules")
+}
+
+model Survey {
+  id           String    @id @default(uuid())
+  ticketId     String    @unique @map("ticket_id")
+  ticket       Ticket    @relation(fields: [ticketId], references: [id])
+  score        Int? // 1-5
+  comment      String?
+  sentAt       DateTime  @default(now()) @map("sent_at")
+  respondedAt  DateTime? @map("responded_at")
+
+  @@map("surveys")
+}

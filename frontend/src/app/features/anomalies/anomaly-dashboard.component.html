@@ -1,0 +1,47 @@
+<div class="px-margin py-space-xl max-w-[1000px] mx-auto w-full space-y-space-lg">
+  <div>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+      <span class="material-symbols-outlined text-status-incident text-[24px]">hub</span>
+      Detección de Anomalías
+    </h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+      Clústeres de tickets con síntomas similares reportados en poco tiempo — posible caída general de un servicio o red.
+    </p>
+  </div>
+
+  <div class="space-y-space-sm">
+    @for (cluster of clusters(); track cluster.id) {
+      <div class="bg-surface-card rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+        <div class="flex items-start justify-between gap-space-sm">
+          <div class="flex items-center gap-space-sm">
+            <span class="p-space-xs rounded-xl flex items-center justify-center" [ngClass]="severityClasses(cluster.severity)">
+              <span class="material-symbols-outlined text-[20px]">{{ cluster.severity === 'critical' ? 'crisis_alert' : 'warning' }}</span>
+            </span>
+            <div>
+              <span class="font-headline-sm text-headline-sm text-on-surface block">{{ cluster.clusterLabel }}</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Detectado {{ cluster.detectedAt | date: 'medium' }}</span>
+            </div>
+          </div>
+          <span class="px-space-sm py-space-2xs rounded-full font-label-sm text-label-sm font-semibold" [ngClass]="severityClasses(cluster.severity)">
+            {{ cluster.severity === 'critical' ? 'Crítico' : 'Alerta' }}
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-space-xs">
+          @for (ticket of cluster.tickets; track ticket.id) {
+            <a
+              [routerLink]="['/tickets', ticket.id]"
+              class="px-space-sm py-space-2xs rounded-lg bg-surface-container-low hover:bg-surface-container font-code-mono text-code-mono text-primary font-semibold transition-colors"
+            >
+              {{ ticket.code }}
+            </a>
+          }
+        </div>
+      </div>
+    } @empty {
+      <div class="p-space-lg text-center bg-surface-card rounded-xl shadow-sm text-on-surface-variant">
+        No se han detectado incidencias masivas. El worker revisa los tickets abiertos cada 10 minutos.
+      </div>
+    }
+  </div>
+</div>

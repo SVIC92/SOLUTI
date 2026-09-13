@@ -1,0 +1,45 @@
+Módulos de IA para Soporte TI
+Triaje y Clasificación Automática de Tickets:
+
+Clasificación por PNL: Analiza el texto del usuario para asignar automáticamente la categoría, el departamento adecuado y el nivel de prioridad.
+
+Enrutamiento Inteligente: Asigna el ticket al técnico con la carga de trabajo ideal y el perfil de habilidad adecuado para ese problema específico.
+
+Agente Virtual / Chatbot de Soporte (Nivel 1):
+
+Asistente Conversacional: Responde dudas frecuentes en lenguaje natural 24/7.
+
+Resolución Autónoma: Ejecuta acciones simples como restablecer contraseñas, otorgar permisos o reiniciar servicios mediante integraciones API sin intervención humana.
+
+Sugerencia de Soluciones para Técnicos (Copilot para TI):
+
+Búsqueda Semántica: Escanea tickets históricos resueltos e identifica problemas similares previos para sugerirle al técnico la solución más rápida.
+
+Generador de Respuestas: Redacta borradores de respuesta explicativos para el usuario final basándose en las notas breves que deje el técnico.
+
+Detección de Anomalías y Prevención de Incidencias:
+
+Agrupación de Incidentes (Clusterización): Identifica cuando múltiples usuarios reportan fallas similares en poco tiempo y alerta sobre una posible caída general del sistema (ej. caída de red o servidor).
+
+Análisis Predictivo: Analiza patrones históricos para predecir cuándo un componente de TI o servicio es probable que falle antes de que el usuario lo reporte.
+
+Definición Automática de SLA y Detección de Sentimiento:
+
+Análisis de Sentimiento: Detecta la frustración o urgencia en el tono del mensaje del usuario para redefinir la prioridad del ticket automáticamente.
+
+Estimación de Tiempo: Calcula un tiempo estimado realista de resolución (Estimated Time of Arrival) analizando la complejidad del problema y el historial de casos parecidos.
+
+Generación Automática de Documentación (Knowledge Management):
+
+Auto-redacción de Artículos: Convierte las resoluciones exitosas de tickets complejos en borrador de artículos para la Base de Conocimiento, listos para revisión y publicación.
+
+Ejemplo de Flujo de Trabajo con IA
+[Usuario redacta ticket] 
+       │
+       ▼
+[IA analiza texto] ➔ Clasifica categoría, prioridad y detecta frustración
+       │
+       ▼
+[IA busca solución] ➔ ¿Existe resolución automática?
+       ├── SÍ ➔ El Chatbot resuelve el problema de inmediato.
+       └── NO ➔ Asigna al técnico óptimo + sugiere respuestas históricas.

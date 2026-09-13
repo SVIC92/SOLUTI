@@ -1,0 +1,1694 @@
+[1m[33mComponent HMR has been enabled, see https://angular.dev/hmr for more info.[39m[22m
+[33m❯[39m Building...
+[32m✔[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m              [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m [36m51.04 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                 [2m | [22m [36m28.09 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                      [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                      [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m          [2m | [22m[1m172.07 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m [1mRaw size[22m
+[32mchunk-VUVHPUPG.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m [36m33.42 kB[39m[2m | [22m
+[32mchunk-7LDQROHJ.js[39m  [2m | [22m[2mmain-layout-component[22m  [2m | [22m [36m23.66 kB[39m[2m | [22m
+[32mchunk-3KQNUIMZ.js[39m  [2m | [22m[2mticket-list-component[22m  [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-NHHBRKNQ.js[39m  [2m | [22m[2mticket-create-component[22m[2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m        [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m    [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-4WUGD4A4.js[39m  [2m | [22m[2m-[22m                      [2m | [22m  [36m1.50 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.474 seconds]
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4300[22m/[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m51.04 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-XYIXW5Z5.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m33.42 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m  [2m | [22m[36m19.59 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m[2m | [22m[36m19.11 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m1.70 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.579 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m51.04 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                 [2m | [22m[36m28.64 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-QZMILMWZ.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m35.05 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.476 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m51.04 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-QB5PJFI5.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m35.92 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.304 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.406 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.505 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.280 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.208 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.214 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.397 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: "as" expression is only allowed on the primary @if block[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:50:25:
+[37m      50 │   } @else if (article(); [32mas a[37m) {
+         ╵                          [32m~~~~[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:56:17:
+[37m      56 │             @if ([32ma[37m.articleDraftGeneratedByAi) {
+         ╵                  [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:59:17:
+[37m      59 │             @if ([32ma[37m.isPublished) {
+         ╵                  [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:65:75:
+[37m      65 │ ...t-headline-lg text-headline-lg text-on-surface">{{ [32ma[37m.title }}</h1>
+         ╵                                                       [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:66:15:
+[37m      66 │           @if ([32ma[37m.category) {
+         ╵                [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:67:81:
+[37m      67 │ ...ext-label-sm text-on-surface-variant">{{ [32ma[37m.category.name }}</span>
+         ╵                                             [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:77:98:
+[37m      77 │ ...n-surface leading-relaxed whitespace-pre-line">{{ [32ma[37m.content }}</p>
+         ╵                                                      [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.298 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: "as" expression is only allowed on the primary @if block[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:50:25:
+[37m      50 │   } @else if (article(); [32mas a[37m) {
+         ╵                          [32m~~~~[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:56:17:
+[37m      56 │             @if ([32ma[37m.articleDraftGeneratedByAi) {
+         ╵                  [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:59:17:
+[37m      59 │             @if ([32ma[37m.isPublished) {
+         ╵                  [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:65:75:
+[37m      65 │ ...t-headline-lg text-headline-lg text-on-surface">{{ [32ma[37m.title }}</h1>
+         ╵                                                       [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:66:15:
+[37m      66 │           @if ([32ma[37m.category) {
+         ╵                [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:67:81:
+[37m      67 │ ...ext-label-sm text-on-surface-variant">{{ [32ma[37m.category.name }}</span>
+         ╵                                             [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'a' does not exist on type 'KbArticleComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/knowledge-base/kb-article.component.html:77:98:
+[37m      77 │ ...n-surface leading-relaxed whitespace-pre-line">{{ [32ma[37m.content }}</p>
+         ╵                                                      [32m^[0m
+
+  Error occurs in the template of component KbArticleComponent.
+
+    src/app/features/knowledge-base/kb-article.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./kb-article.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.195 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.380 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.290 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.175 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'assetId' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:215:19:
+[37m      215 │               {{ t.[32massetId[37m ? 'Cambiar' : 'Vincular' }}
+          ╵                    [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'asset' does not exist on type 'TicketDetail'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:219:17:
+[37m      219 │           @if (t.[32masset[37m; as asset) {
+          ╵                  [32m~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:19:15:
+[37m      19 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                 [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m [36m51.97 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                    [2m | [22m [36m29.88 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                         [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m             [2m | [22m[1m174.78 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mchunk-FSWLWCHT.js[39m  [2m | [22m[2mticket-detail-component[22m   [2m | [22m [36m47.99 kB[39m[2m | [22m
+[32mchunk-QBHEE44G.js[39m  [2m | [22m[2mmain-layout-component[22m     [2m | [22m [36m27.38 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-ABAXL7AB.js[39m  [2m | [22m[2mkb-article-component[22m      [2m | [22m [36m21.58 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m     [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m   [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m           [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-7LT5GEPS.js[39m  [2m | [22m[2masset-list-component[22m      [2m | [22m [36m16.53 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m       [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m       [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m         [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[32mchunk-Y2WR3HKS.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.40 kB[39m[2m | [22m
+[32mchunk-H7WPGSNN.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.02 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.368 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m51.97 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-DUHRGKGU.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m50.16 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.302 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m51.97 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-XBWJHFVP.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m50.50 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.309 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.185 seconds]
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mTS-998113: RouterLink is not used within the template of TicketDetailComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:22:47:
+[37m      22 │   imports: [CommonModule, ReactiveFormsModule, [32mRouterLink[37m],
+         ╵                                                [32m~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Opening tag "button" not terminated.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:74:18:
+[37m      74 │                   [32m<button[37m
+         ╵                   [32m~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "button". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.html:83:18:
+[37m      83 │                   [32m</button>[37m
+         ╵                   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component TicketDetailComponent.
+
+    src/app/features/tickets/ticket-detail/ticket-detail.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./ticket-detail.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                 [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m [36m51.97 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                    [2m | [22m [36m30.09 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                         [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m             [2m | [22m[1m175.00 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mchunk-D77S5UUX.js[39m  [2m | [22m[2mticket-detail-component[22m   [2m | [22m [36m57.91 kB[39m[2m | [22m
+[32mchunk-QBHEE44G.js[39m  [2m | [22m[2mmain-layout-component[22m     [2m | [22m [36m27.38 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-ABAXL7AB.js[39m  [2m | [22m[2mkb-article-component[22m      [2m | [22m [36m21.58 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m     [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m   [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m           [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-7LT5GEPS.js[39m  [2m | [22m[2masset-list-component[22m      [2m | [22m [36m16.53 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m       [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m       [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m         [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[32mchunk-Y2WR3HKS.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.40 kB[39m[2m | [22m
+[32mchunk-H7WPGSNN.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.02 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.375 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m [2m | [22m[1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m[2m | [22m[36m30.18 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.190 seconds]
+
+Stylesheet update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m[36m52.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mchunk-QB2Z3ILE.js[39m  [2m | [22m[2mticket-detail-component[22m   [2m | [22m[36m56.32 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m[2m | [22m[36m19.57 kB[39m[2m | [22m
+[32mchunk-5YNCDMDD.js[39m  [2m | [22m[2m-[22m                         [2m | [22m [36m1.26 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.367 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                 [2m | [22m[36m52.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mchunk-SBNZQ6OS.js[39m  [2m | [22m[2mmain-layout-component[22m[2m | [22m[36m27.46 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.188 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                 [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m [36m52.17 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                    [2m | [22m [36m30.18 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                         [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m             [2m | [22m[1m175.28 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m
+[32mchunk-QB2Z3ILE.js[39m  [2m | [22m[2mticket-detail-component[22m   [2m | [22m [36m56.32 kB[39m[2m | [22m
+[32mchunk-SBNZQ6OS.js[39m  [2m | [22m[2mmain-layout-component[22m     [2m | [22m [36m27.46 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-ABAXL7AB.js[39m  [2m | [22m[2mkb-article-component[22m      [2m | [22m [36m21.58 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m     [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m[2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m   [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m           [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-7LT5GEPS.js[39m  [2m | [22m[2masset-list-component[22m      [2m | [22m [36m16.53 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m       [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m       [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m         [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[32mchunk-Y2WR3HKS.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.40 kB[39m[2m | [22m
+[32mchunk-5YNCDMDD.js[39m  [2m | [22m[2m-[22m                         [2m | [22m  [36m1.26 kB[39m[2m | [22m
+[2m...and 1 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.300 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-KOTBKZAE.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m57.15 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.352 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-H5UPPWSE.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m64.57 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.369 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                 [2m | [22m[36m52.17 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m               [2m | [22m[36m31.07 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mchunk-JDZR46WN.js[39m  [2m | [22m[2mmain-layout-component[22m[2m | [22m[36m27.55 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.411 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m            [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m             [2m | [22m[36m52.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m            [2m | [22m[1mRaw size[22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m[2m | [22m[36m17.27 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.283 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-Y4CUC6X4.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m64.57 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.390 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-O7EFJJB6.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m66.35 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.327 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-RJSUZ2NI.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m66.57 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.318 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-5VTVWYKM.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m67.57 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.292 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.30 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                 [2m | [22m[36m31.18 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-XTWFVSVP.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m79.06 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.416 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m[1mRaw size[22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m[36m11.23 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.444 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                 [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mchunk-DQPBYTIK.js[39m  [2m | [22m[2mmain-layout-component[22m[2m | [22m[36m27.65 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.223 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.51 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.18 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m176.63 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-XTWFVSVP.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m79.06 kB[39m[2m | [22m
+[32mchunk-DQPBYTIK.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m27.65 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-ABAXL7AB.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m21.58 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-7LT5GEPS.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m16.53 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.214 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.51 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.18 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m176.63 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-XTWFVSVP.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m79.06 kB[39m[2m | [22m
+[32mchunk-DQPBYTIK.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m27.65 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-ABAXL7AB.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m21.58 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-7LT5GEPS.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m16.53 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.174 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-SRNJWEEQ.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m79.06 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.719 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-7MCR5K7M.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m79.21 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.339 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-BWKRIBLG.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m80.06 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.318 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-YB62FLHS.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m80.30 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.317 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-NJ3CN2MU.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m80.41 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.346 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-XLBC5FXL.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m80.49 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.313 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-NKCXGINE.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m81.49 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.380 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-WAYTUH53.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m81.64 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.420 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-AWFA64KT.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m82.40 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.390 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-O74T3E4N.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m82.55 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.398 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-RSQ2CNU5.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m83.19 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.360 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-XV54ACYQ.js[39m  [2m | [22m[2masset-list-component[22m[2m | [22m[36m16.53 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.384 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-QTO3QKN6.js[39m  [2m | [22m[2masset-list-component[22m[2m | [22m[36m17.05 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.198 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.51 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-C4A5YZGD.js[39m  [2m | [22m[2masset-list-component[22m[2m | [22m[36m18.60 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.199 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.175 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-O25KWPKE.js[39m  [2m | [22m[2mkb-article-component[22m[2m | [22m[36m21.58 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.220 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-FRKZFEBZ.js[39m  [2m | [22m[2mkb-article-component[22m[2m | [22m[36m21.61 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.250 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-T4O362OE.js[39m  [2m | [22m[2mkb-article-component[22m[2m | [22m[36m21.82 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.266 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-L54TI4MS.js[39m  [2m | [22m[2mkb-article-component[22m[2m | [22m[36m22.00 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.197 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m               [2m | [22m[1mRaw size[22m
+[32mchunk-QJTJAWBQ.js[39m  [2m | [22m[2mkb-article-component[22m[2m | [22m[36m22.80 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.218 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                 [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                [2m | [22m[1mRaw size[22m
+[32mchunk-OICXVNM3.js[39m  [2m | [22m[2mmain-layout-component[22m[2m | [22m[36m27.65 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.311 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.195 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'operations' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:17:20:
+[37m      17 │       @for (item of [32moperations[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'management' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:52:20:
+[37m      52 │       @for (item of [32mmanagement[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'system' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:77:20:
+[37m      77 │       @for (item of [32msystem[37m; track item.label) {
+         ╵                     [32m~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.160 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'operations' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:17:20:
+[37m      17 │       @for (item of [32moperations[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'management' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:52:20:
+[37m      52 │       @for (item of [32mmanagement[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'system' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:77:20:
+[37m      77 │       @for (item of [32msystem[37m; track item.label) {
+         ╵                     [32m~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'computed'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.ts:60:31:
+[37m      60 │   readonly visibleOperations = [32mcomputed[37m(() => this.visibleTo(this....
+         ╵                                [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'computed'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.ts:61:31:
+[37m      61 │   readonly visibleManagement = [32mcomputed[37m(() => this.visibleTo(this....
+         ╵                                [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'computed'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.ts:62:27:
+[37m      62 │   readonly visibleSystem = [32mcomputed[37m(() => this.visibleTo(this.syst...
+         ╵                            [32m~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.166 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'operations' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:17:20:
+[37m      17 │       @for (item of [32moperations[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'management' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:52:20:
+[37m      52 │       @for (item of [32mmanagement[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'system' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:77:20:
+[37m      77 │       @for (item of [32msystem[37m; track item.label) {
+         ╵                     [32m~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.208 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'management' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:52:20:
+[37m      52 │       @for (item of [32mmanagement[37m; track item.label) {
+         ╵                     [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'system' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:77:20:
+[37m      77 │       @for (item of [32msystem[37m; track item.label) {
+         ╵                     [32m~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.197 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'system' is private and only accessible within class 'MainLayoutComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/layout/main-layout.component.html:77:20:
+[37m      77 │       @for (item of [32msystem[37m; track item.label) {
+         ╵                     [32m~~~~~~[0m
+
+  Error occurs in the template of component MainLayoutComponent.
+
+    src/app/layout/main-layout.component.ts:28:15:
+[37m      28 │   templateUrl: [32m'./main-layout.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.56 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.18 kB[39m[2m | [22m
+[32mchunk-764XSJQA.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m2.94 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m176.69 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-RSQ2CNU5.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m83.19 kB[39m[2m | [22m
+[32mchunk-PCUXPODN.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m28.59 kB[39m[2m | [22m
+[32mchunk-SU3XWVQ7.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m26.80 kB[39m[2m | [22m
+[32mchunk-QJTJAWBQ.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m22.80 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-OBC3DEPY.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m19.11 kB[39m[2m | [22m
+[32mchunk-C4A5YZGD.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-DVP4CSWW.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m18.46 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-ESE2IAUU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m13.13 kB[39m[2m | [22m
+[32mchunk-N3K7MAIC.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.204 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-UCNZ2GEL.js[39m  [2m | [22m[2mticket-create-component[22m[2m | [22m[36m19.11 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.277 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-EX6X34F6.js[39m  [2m | [22m[2mticket-create-component[22m[2m | [22m[36m19.30 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.262 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-BZJY3NSM.js[39m  [2m | [22m[2mticket-create-component[22m[2m | [22m[36m20.14 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.186 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mchunk-KSUST6ZQ.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m[36m26.80 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.309 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mchunk-J2KFBEKC.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m[36m27.31 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.256 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                      [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m[1mRaw size[22m
+[32mchunk-U2VRB4Q3.js[39m  [2m | [22m[2mautomation-rules-component[22m[2m | [22m[36m28.12 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.216 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-XYGPF7DB.js[39m  [2m | [22m[2msla-admin-component[22m[2m | [22m[36m13.13 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.276 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-IG7BM5M7.js[39m  [2m | [22m[2msla-admin-component[22m[2m | [22m[36m13.22 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.186 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-GOSGLJ7A.js[39m  [2m | [22m[2msla-admin-component[22m[2m | [22m[36m13.36 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.192 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-RUHE2BLU.js[39m  [2m | [22m[2msla-admin-component[22m[2m | [22m[36m14.20 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.154 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m52.56 kB[39m[2m | [22m
+[32mchunk-EZPX5C5N.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m3.43 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-UQTLQWNV.js[39m  [2m | [22m[2mticket-detail-component[22m[2m | [22m[36m83.19 kB[39m[2m | [22m
+[32mchunk-W5EQX45Y.js[39m  [2m | [22m[2mmain-layout-component[22m  [2m | [22m[36m28.59 kB[39m[2m | [22m
+[32mchunk-MYXOCVVH.js[39m  [2m | [22m[2mkb-article-component[22m   [2m | [22m[36m22.80 kB[39m[2m | [22m
+[32mchunk-KFU64IUR.js[39m  [2m | [22m[2masset-list-component[22m   [2m | [22m[36m18.60 kB[39m[2m | [22m
+[32mchunk-RD3O4A7Z.js[39m  [2m | [22m[2mlogin-component[22m        [2m | [22m[36m18.46 kB[39m[2m | [22m
+[32mchunk-S4HRNOK6.js[39m  [2m | [22m[2mkb-list-component[22m      [2m | [22m[36m12.72 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.285 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m[36m52.56 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-AKM6BJIF.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m19.52 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.253 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m[36m52.56 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m         [2m | [22m[36m31.30 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-5KQFH3LS.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m27.21 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.218 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).

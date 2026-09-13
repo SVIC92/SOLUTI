@@ -1,0 +1,79 @@
+<div class="px-margin py-space-xl max-w-[900px] mx-auto w-full h-[calc(100vh-4rem)] flex flex-col">
+  <div class="flex items-center gap-space-sm pb-space-md shrink-0">
+    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-on-primary shadow-sm">
+      <span class="material-symbols-outlined text-[22px]">smart_toy</span>
+    </div>
+    <div>
+      <h1 class="font-headline-md text-headline-md text-on-surface">NovaBot · Agente Nivel 1</h1>
+      <p class="font-label-sm text-label-sm text-status-resolved flex items-center gap-space-2xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-status-resolved animate-pulse"></span>
+        En línea 24/7
+      </p>
+    </div>
+  </div>
+
+  <div class="flex-1 bg-surface-card rounded-xl shadow-sm flex flex-col overflow-hidden">
+    <div class="flex-1 p-space-lg overflow-y-auto space-y-space-md">
+      @for (msg of messages(); track $index) {
+        @if (msg.role === 'user') {
+          <div class="flex justify-end">
+            <div class="max-w-[75%] p-space-sm bg-primary-container text-on-primary rounded-xl rounded-tr-none shadow-sm font-body-md text-body-md">
+              {{ msg.content }}
+            </div>
+          </div>
+        } @else {
+          <div class="flex items-start gap-space-sm max-w-[85%]">
+            <div class="w-8 h-8 rounded-full bg-ai-purple text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[16px]">smart_toy</span>
+            </div>
+            <div class="flex flex-col gap-space-2xs">
+              <div class="p-space-sm bg-surface-container-low rounded-xl rounded-tl-none shadow-sm font-body-md text-body-md text-on-surface whitespace-pre-line">
+                {{ msg.content }}
+              </div>
+              @if (msg.resolvedAutonomously) {
+                <span class="font-label-sm text-label-sm text-status-resolved flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  Resuelto automáticamente
+                </span>
+              }
+              @if (msg.escalatedToHuman) {
+                <span class="font-label-sm text-label-sm text-status-warning flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[14px]">support_agent</span>
+                  Derivado a un técnico
+                </span>
+              }
+            </div>
+          </div>
+        }
+      }
+
+      @if (sending()) {
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-ai-purple text-on-primary flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[16px] animate-pulse">smart_toy</span>
+          </div>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">NovaBot está escribiendo…</span>
+        </div>
+      }
+
+      <div #scrollAnchor></div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="send()" class="p-space-sm bg-surface-card border-t border-border-subtle flex items-center gap-space-sm shrink-0">
+      <input
+        formControlName="message"
+        type="text"
+        placeholder="Escribe tu mensaje a NovaBot..."
+        class="flex-1 h-10 px-space-md bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm outline-none"
+      />
+      <button
+        type="submit"
+        [disabled]="form.invalid || sending()"
+        class="h-10 px-space-lg rounded-lg bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary font-label-md text-label-md font-semibold flex items-center gap-space-xs shadow-sm"
+      >
+        <span>Enviar</span>
+        <span class="material-symbols-outlined text-[16px]">send</span>
+      </button>
+    </form>
+  </div>
+</div>
