@@ -1692,3 +1692,96 @@ Application bundle generation complete. [0.218 seconds]
 
 Stylesheet update sent to client(s).
 Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.56 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.30 kB[39m[2m | [22m
+[32mchunk-EZPX5C5N.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m3.43 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m177.29 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-UQTLQWNV.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m83.19 kB[39m[2m | [22m
+[32mchunk-W5EQX45Y.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m28.59 kB[39m[2m | [22m
+[32mchunk-U2VRB4Q3.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m28.12 kB[39m[2m | [22m
+[32mchunk-5KQFH3LS.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m27.21 kB[39m[2m | [22m
+[32mchunk-MYXOCVVH.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m22.80 kB[39m[2m | [22m
+[32mchunk-BZJY3NSM.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m20.14 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-KFU64IUR.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-RUHE2BLU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m14.20 kB[39m[2m | [22m
+[32mchunk-S4HRNOK6.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.769 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.56 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.30 kB[39m[2m | [22m
+[32mchunk-EZPX5C5N.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m3.43 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m177.29 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-UQTLQWNV.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m83.19 kB[39m[2m | [22m
+[32mchunk-W5EQX45Y.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m28.59 kB[39m[2m | [22m
+[32mchunk-U2VRB4Q3.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m28.12 kB[39m[2m | [22m
+[32mchunk-5KQFH3LS.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m27.21 kB[39m[2m | [22m
+[32mchunk-MYXOCVVH.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m22.80 kB[39m[2m | [22m
+[32mchunk-BZJY3NSM.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m20.14 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-KFU64IUR.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-RUHE2BLU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m14.20 kB[39m[2m | [22m
+[32mchunk-S4HRNOK6.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.937 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                  [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                       [2m | [22m [36m52.56 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                     [2m | [22m [36m31.30 kB[39m[2m | [22m
+[32mchunk-EZPX5C5N.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m3.43 kB[39m[2m | [22m
+[32mchunk-B7NMGD2O.js[39m  [2m | [22m[2m-[22m                          [2m | [22m[36m224 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m              [2m | [22m[1m177.29 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                      [2m | [22m [1mRaw size[22m
+[32mchunk-UQTLQWNV.js[39m  [2m | [22m[2mticket-detail-component[22m    [2m | [22m [36m83.19 kB[39m[2m | [22m
+[32mchunk-W5EQX45Y.js[39m  [2m | [22m[2mmain-layout-component[22m      [2m | [22m [36m28.59 kB[39m[2m | [22m
+[32mchunk-U2VRB4Q3.js[39m  [2m | [22m[2mautomation-rules-component[22m [2m | [22m [36m28.12 kB[39m[2m | [22m
+[32mchunk-5KQFH3LS.js[39m  [2m | [22m[2mlogin-component[22m            [2m | [22m [36m27.21 kB[39m[2m | [22m
+[32mchunk-MYXOCVVH.js[39m  [2m | [22m[2mkb-article-component[22m       [2m | [22m [36m22.80 kB[39m[2m | [22m
+[32mchunk-BZJY3NSM.js[39m  [2m | [22m[2mticket-create-component[22m    [2m | [22m [36m20.14 kB[39m[2m | [22m
+[32mchunk-L4BRLAJR.js[39m  [2m | [22m[2mticket-list-component[22m      [2m | [22m [36m19.59 kB[39m[2m | [22m
+[32mchunk-CCLC4N2B.js[39m  [2m | [22m[2msurvey-dashboard-component[22m [2m | [22m [36m19.57 kB[39m[2m | [22m
+[32mchunk-KFU64IUR.js[39m  [2m | [22m[2masset-list-component[22m       [2m | [22m [36m18.60 kB[39m[2m | [22m
+[32mchunk-AWKO6G6R.js[39m  [2m | [22m[2mchatbot-component[22m          [2m | [22m [36m17.27 kB[39m[2m | [22m
+[32mchunk-3X57ZOBP.js[39m  [2m | [22m[2mdashboard-component[22m        [2m | [22m [36m15.98 kB[39m[2m | [22m
+[32mchunk-RUHE2BLU.js[39m  [2m | [22m[2msla-admin-component[22m        [2m | [22m [36m14.20 kB[39m[2m | [22m
+[32mchunk-S4HRNOK6.js[39m  [2m | [22m[2mkb-list-component[22m          [2m | [22m [36m12.72 kB[39m[2m | [22m
+[32mchunk-BUBQYCTM.js[39m  [2m | [22m[2manomaly-dashboard-component[22m[2m | [22m [36m11.23 kB[39m[2m | [22m
+[32mchunk-DLDRPPN3.js[39m  [2m | [22m[2m-[22m                          [2m | [22m  [36m1.70 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [0.174 seconds]
+

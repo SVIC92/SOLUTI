@@ -4,6 +4,6 @@ export const environment = {
   // del despliegue on-premise (mismo reverse proxy), acá se necesita la URL
   // completa del backend. Reemplazar por la URL real del servicio en Render
   // (Render → tu servicio → arriba a la izquierda) antes de compilar/deployar.
-  apiUrl: 'https://CAMBIAR-nombre-de-tu-servicio.onrender.com/api/v1',
-  wsUrl: 'https://CAMBIAR-nombre-de-tu-servicio.onrender.com',
+  apiUrl: 'https://soluti.onrender.com/api/v1',
+  wsUrl: 'https://soluti.onrender.com',
 };
