@@ -1,0 +1,192 @@
+<div class="px-margin py-space-xl max-w-[1400px] mx-auto w-full space-y-space-lg">
+  <div>
+    <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+      <span class="w-2 h-2 rounded-full bg-status-resolved"></span>
+      <span>Cuenta</span>
+    </div>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-space-2xs">Mi Perfil</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+      Consulta los datos de tu cuenta y gestiona tu información personal.
+    </p>
+  </div>
+
+  @if (loading()) {
+    <p class="font-body-md text-body-md text-on-surface-variant">Cargando perfil…</p>
+  } @else if (profile()) {
+    @let p = profile()!;
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+      <!-- Resumen de cuenta -->
+      <div class="xl:col-span-4 space-y-space-md">
+        <div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-16 h-16 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-md text-headline-md font-semibold">
+            {{ p.fullName.charAt(0).toUpperCase() }}
+          </div>
+          <h2 class="font-headline-sm text-headline-sm text-on-surface mt-space-sm">{{ p.fullName }}</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">{{ p.email }}</p>
+
+          <span class="mt-space-sm inline-flex items-center gap-space-2xs px-space-sm py-0.5 rounded-full bg-ai-purple-subtle text-ai-purple font-label-sm text-label-sm font-semibold">
+            <span class="material-symbols-outlined text-[14px]">shield_person</span>
+            {{ roleLabel() }}
+          </span>
+
+          <div class="w-full mt-space-lg pt-space-md border-t border-border-subtle space-y-space-sm text-left">
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Estado</span>
+              <span
+                class="font-label-sm text-label-sm font-semibold px-space-xs py-0.5 rounded-full"
+                [class.bg-status-resolved-bg]="p.isActive"
+                [class.text-status-resolved]="p.isActive"
+                [class.bg-status-incident-bg]="!p.isActive"
+                [class.text-status-incident]="!p.isActive"
+              >
+                {{ p.isActive ? 'Activa' : 'Inactiva' }}
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Método de acceso</span>
+              <span class="font-label-md text-label-md text-on-surface">{{ authProviderLabel() }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">Miembro desde</span>
+              <span class="font-label-md text-label-md text-on-surface">{{ p.createdAt | date: 'dd/MM/yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formularios de edición -->
+      <div class="xl:col-span-8 space-y-space-md">
+        <!-- Editar perfil -->
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Datos Personales</h2>
+          </div>
+
+          @if (profileMessage(); as msg) {
+            <div
+              class="px-space-md py-space-xs rounded-lg font-body-sm text-body-sm"
+              [class.bg-status-resolved-bg]="msg.type === 'success'"
+              [class.text-status-resolved]="msg.type === 'success'"
+              [class.bg-status-incident-bg]="msg.type === 'error'"
+              [class.text-status-incident]="msg.type === 'error'"
+            >
+              {{ msg.text }}
+            </div>
+          }
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+            <div class="space-y-space-2xs">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="fullName">Nombre Completo *</label>
+              <input
+                id="fullName"
+                formControlName="fullName"
+                type="text"
+                class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+              />
+            </div>
+
+            <div class="space-y-space-2xs">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="email">Correo Corporativo</label>
+              <input
+                id="email"
+                type="email"
+                [value]="p.email"
+                disabled
+                class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface-variant font-body-md text-body-md shadow-sm outline-none cursor-not-allowed"
+              />
+            </div>
+          </div>
+
+          <div class="pt-space-sm flex items-center justify-end">
+            <button
+              type="submit"
+              [disabled]="profileForm.invalid || savingProfile()"
+              class="bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary py-2.5 px-space-lg rounded-xl font-label-lg text-label-lg font-semibold flex items-center gap-space-xs shadow-sm transition-all"
+            >
+              <span class="material-symbols-outlined text-lg">save</span>
+              <span>{{ savingProfile() ? 'Guardando…' : 'Guardar Cambios' }}</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Seguridad / cambio de contraseña -->
+        <div class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-primary text-[20px]">lock</span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Seguridad</h2>
+          </div>
+
+          @if (!canChangePassword()) {
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Esta cuenta inicia sesión mediante <strong>{{ authProviderLabel() }}</strong>; la contraseña se
+              gestiona en tu directorio corporativo, no aquí.
+            </p>
+          } @else {
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="space-y-space-md">
+              @if (passwordMessage(); as msg) {
+                <div
+                  class="px-space-md py-space-xs rounded-lg font-body-sm text-body-sm"
+                  [class.bg-status-resolved-bg]="msg.type === 'success'"
+                  [class.text-status-resolved]="msg.type === 'success'"
+                  [class.bg-status-incident-bg]="msg.type === 'error'"
+                  [class.text-status-incident]="msg.type === 'error'"
+                >
+                  {{ msg.text }}
+                </div>
+              }
+
+              <div class="space-y-space-2xs">
+                <label class="font-label-md text-label-md text-on-surface font-semibold" for="currentPassword">Contraseña Actual *</label>
+                <input
+                  id="currentPassword"
+                  formControlName="currentPassword"
+                  type="password"
+                  autocomplete="current-password"
+                  class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                <div class="space-y-space-2xs">
+                  <label class="font-label-md text-label-md text-on-surface font-semibold" for="newPassword">Nueva Contraseña *</label>
+                  <input
+                    id="newPassword"
+                    formControlName="newPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Mínimo 8 caracteres"
+                    class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+                  />
+                </div>
+                <div class="space-y-space-2xs">
+                  <label class="font-label-md text-label-md text-on-surface font-semibold" for="confirmPassword">Confirmar Contraseña *</label>
+                  <input
+                    id="confirmPassword"
+                    formControlName="confirmPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="pt-space-sm flex items-center justify-end">
+                <button
+                  type="submit"
+                  [disabled]="passwordForm.invalid || changingPassword()"
+                  class="bg-surface-elevated border border-border-subtle hover:bg-surface-canvas disabled:opacity-50 text-on-surface py-2.5 px-space-lg rounded-xl font-label-lg text-label-lg font-semibold flex items-center gap-space-xs transition-all"
+                >
+                  <span class="material-symbols-outlined text-lg">key</span>
+                  <span>{{ changingPassword() ? 'Actualizando…' : 'Cambiar Contraseña' }}</span>
+                </button>
+              </div>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  } @else {
+    <p class="font-body-md text-body-md text-status-incident">No se pudo cargar tu perfil. Intenta recargar la página.</p>
+  }
+</div>

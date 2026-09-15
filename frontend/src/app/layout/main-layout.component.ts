@@ -19,7 +19,8 @@ interface NavItem {
 /**
  * Shell compartido (sidebar + topbar) que replica el sistema de diseño "SoluTI_AI"
  * exportado desde Stitch. Los módulos aún no implementados (Copilot, KB, CMDB, SLA,
- * Chatbot, Reportes, Perfil) se muestran en el menú pero sin navegación real todavía.
+ * Chatbot, Reportes) se muestran en el menú pero sin navegación real todavía.
+ * "Mi Perfil" se accede desde el avatar de la topbar (ver profile.component.ts).
  */
 @Component({
   selector: 'app-main-layout',
@@ -48,7 +49,8 @@ export class MainLayoutComponent {
   ];
 
   private readonly system: NavItem[] = [
-    // Roles alineados con /automation (ADMIN) en app.routes.ts.
+    // Roles alineados con /users (ADMIN) y /automation (ADMIN) en app.routes.ts.
+    { label: 'Gestión de Usuarios', icon: 'group', path: '/users', roles: ['ADMIN'] },
     { label: 'Configuración', icon: 'settings', path: '/automation', roles: ['ADMIN'] },
   ];
 

@@ -96,4 +96,9 @@ export class AuthService {
   async hashPassword(plain: string): Promise<string> {
     return bcrypt.hash(plain, 12);
   }
+
+  /** Usado por el flujo de "cambiar contraseña" del perfil (PATCH /users/me/change-password). */
+  async comparePassword(plain: string, hash: string): Promise<boolean> {
+    return bcrypt.compare(plain, hash);
+  }
 }

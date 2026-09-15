@@ -19,6 +19,11 @@ export const routes: Routes = [
           import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
       },
       {
+        path: 'profile',
+        loadComponent: () =>
+          import('./features/profile/profile.component').then((m) => m.ProfileComponent),
+      },
+      {
         path: 'tickets',
         loadComponent: () =>
           import('./features/tickets/ticket-list/ticket-list.component').then(
@@ -84,12 +89,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/assets/asset-list.component').then((m) => m.AssetListComponent),
       },
-      // Solo ADMIN puede gestionar usuarios — ejemplo de uso de roleGuard (plan, sección 4).
+      // Solo ADMIN puede gestionar usuarios (plan, sección 4).
       {
         path: 'users',
         canActivate: [roleGuard(['ADMIN'])],
         loadComponent: () =>
-          import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent), // placeholder hasta implementar users feature
+          import('./features/users/user-management.component').then((m) => m.UserManagementComponent),
       },
     ],
   },
