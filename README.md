@@ -72,7 +72,7 @@ Fase 0 (fundaciones) y Fase 1 (MVP) están implementadas: auth JWT + RBAC, CRUD 
 tickets con historial/comentarios/asignación, notificaciones email + WebSocket,
 reporte de dashboard básico, y el puente hacia `ai-service` (eventos de dominio vía
 Redis Streams + endpoints síncronos para chatbot/copilot). El frontend replica el
-sistema de diseño "NovaDesk AI" (Tailwind) exportado desde Stitch.
+sistema de diseño "SoluTI_AI" (Tailwind) exportado desde Stitch.
 
 De Fase 2 ya están implementados:
 - **SLA** (`backend/src/modules/sla`): políticas de primera respuesta/resolución por

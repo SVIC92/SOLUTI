@@ -18,7 +18,7 @@ const STATUS_TABS: StatusTab[] = [
   { key: 'CLOSED', label: 'Cerrados' },
 ];
 
-/** Gestión de Tickets — replica el diseño "NovaDesk AI" (tabs de estado, filtros,
+/** Gestión de Tickets — replica el diseño "SoluTI_AI" (tabs de estado, filtros,
  * tabla densa con badges de prioridad/estado) sobre datos reales del backend. */
 @Component({
   selector: 'app-ticket-list',

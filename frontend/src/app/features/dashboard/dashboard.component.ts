@@ -11,7 +11,7 @@ interface DashboardMetrics {
 }
 
 /**
- * Panel Principal — replica el diseño "NovaDesk AI" exportado de Stitch.
+ * Panel Principal — replica el diseño "SoluTI_AI" exportado de Stitch.
  * Las tarjetas de "Tickets Abiertos" y "SLA Respuesta" usan datos reales del
  * endpoint /reports/dashboard (ver ReportsService en el backend). El resto de
  * widgets (clúster de incidentes IA, carga por técnico, KB sugerida, CMDB) son

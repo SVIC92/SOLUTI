@@ -15,7 +15,7 @@ import type { SimilarTicketResult } from '../copilot.service';
 import { TicketService } from '../ticket.service';
 import type { SlaStatus } from '../ticket.service';
 
-/** Detalle de Ticket — replica el diseño "NovaDesk AI": cabecera con acciones de
+/** Detalle de Ticket — replica el diseño "SoluTI_AI": cabecera con acciones de
  * estado, descripción original, hilo de comentarios (público/interno), historial,
  * estado de cumplimiento de SLA y vínculo a un activo del CMDB (plan `1.txt`, Fase 2).
  * El panel de Copilot IA del diseño original se conecta cuando exista ai-service. */

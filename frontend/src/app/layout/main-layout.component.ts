@@ -17,7 +17,7 @@ interface NavItem {
 }
 
 /**
- * Shell compartido (sidebar + topbar) que replica el sistema de diseño "NovaDesk AI"
+ * Shell compartido (sidebar + topbar) que replica el sistema de diseño "SoluTI_AI"
  * exportado desde Stitch. Los módulos aún no implementados (Copilot, KB, CMDB, SLA,
  * Chatbot, Reportes, Perfil) se muestran en el menú pero sin navegación real todavía.
  */

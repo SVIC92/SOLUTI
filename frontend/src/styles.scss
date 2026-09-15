@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 /* Reset/base tomado literalmente de las pantallas exportadas de Stitch, para que el
-   look & feel (NovaDesk AI design system) sea idéntico al de los mockups. */
+   look & feel (SoluTI_AI design system) sea idéntico al de los mockups. */
 html,
 body {
   margin: 0;
   padding: 0;
   background-color: theme('colors.surface-canvas');
-  font-family: 'Inter', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
 }
 body {
   overscroll-behavior: none;

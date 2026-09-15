@@ -13,7 +13,7 @@ interface Category {
   name: string;
 }
 
-/** Nueva Solicitud / Portal — replica el diseño "NovaDesk AI". El panel de
+/** Nueva Solicitud / Portal — replica el diseño "SoluTI_AI". El panel de
  * "Detección Automática por IA" y las guías de autoservicio son representativos
  * del sistema de diseño; se conectan cuando el módulo de Triaje IA esté activo. */
 @Component({

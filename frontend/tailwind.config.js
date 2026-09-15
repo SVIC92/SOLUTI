@@ -1,5 +1,5 @@
 /**
- * Sistema de diseño "NovaDesk AI" — extraído literalmente de las pantallas exportadas
+ * Sistema de diseño "SoluTI_AI" — extraído literalmente de las pantallas exportadas
  * desde Stitch (paleta pizarra/gris + acentos índigo/violeta para funciones de IA).
  * No modificar valores individuales sin actualizar también las plantillas: todas las
  * pantallas comparten este mismo token set.
@@ -92,17 +92,17 @@ module.exports = {
         'gutter-compact': '0.75rem',
       },
       fontFamily: {
-        'label-sm': ['Inter', 'sans-serif'],
-        'label-md': ['Inter', 'sans-serif'],
-        'code-mono': ['Inter', 'sans-serif'],
-        'headline-sm': ['Inter', 'sans-serif'],
-        'body-md': ['Inter', 'sans-serif'],
-        'headline-md': ['Inter', 'sans-serif'],
-        display: ['Inter', 'sans-serif'],
-        'body-sm': ['Inter', 'sans-serif'],
-        'label-lg': ['Inter', 'sans-serif'],
-        'body-lg': ['Inter', 'sans-serif'],
-        'headline-lg': ['Inter', 'sans-serif'],
+        'label-sm': ['"JetBrains Mono"', 'monospace'],
+        'label-md': ['"JetBrains Mono"', 'monospace'],
+        'code-mono': ['"JetBrains Mono"', 'monospace'],
+        'headline-sm': ['"JetBrains Mono"', 'monospace'],
+        'body-md': ['"JetBrains Mono"', 'monospace'],
+        'headline-md': ['"JetBrains Mono"', 'monospace'],
+        display: ['"JetBrains Mono"', 'monospace'],
+        'body-sm': ['"JetBrains Mono"', 'monospace'],
+        'label-lg': ['"JetBrains Mono"', 'monospace'],
+        'body-lg': ['"JetBrains Mono"', 'monospace'],
+        'headline-lg': ['"JetBrains Mono"', 'monospace'],
       },
       fontSize: {
         'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.02em', fontWeight: '600' }],
