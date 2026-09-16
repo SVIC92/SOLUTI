@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 import type { SupportGroup } from '../../core/models/group.model';
 import type { RoleName, UserProfile } from '../../core/models/user.model';
+import { SupportGroupService } from '../../core/services/support-group.service';
 import { UserService } from './user.service';
 
 interface RoleTab {
@@ -41,6 +42,7 @@ type FormMode = 'closed' | 'create' | 'edit';
 })
 export class UserManagementComponent {
   private readonly userService = inject(UserService);
+  private readonly supportGroupService = inject(SupportGroupService);
   private readonly fb = inject(FormBuilder);
   protected readonly auth = inject(AuthService);
 
@@ -88,7 +90,7 @@ export class UserManagementComponent {
 
   constructor() {
     this.reload();
-    this.userService.listGroups().subscribe((groups) => this.groups.set(groups));
+    this.supportGroupService.list().subscribe((groups) => this.groups.set(groups));
   }
 
   private reload(): void {

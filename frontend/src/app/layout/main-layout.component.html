@@ -31,11 +31,15 @@
       @for (item of visibleOperations; track item.label) {
         @if (item.path) {
           <a
+            #rla="routerLinkActive"
             [routerLink]="item.path"
             routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
             [routerLinkActiveOptions]="{ exact: false }"
             [title]="item.label"
-            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant transition-all"
+            [class.hover:bg-surface-container-low]="!rla.isActive"
+            [class.hover:text-on-surface]="!rla.isActive"
+            [class.hover:bg-primary]="rla.isActive"
             [class.justify-between]="!sidebarCollapsed()"
             [class.justify-center]="sidebarCollapsed()"
           >
@@ -77,10 +81,14 @@
       @for (item of visibleManagement; track item.label) {
         @if (item.path) {
           <a
+            #rla="routerLinkActive"
             [routerLink]="item.path"
             routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
             [title]="item.label"
-            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant transition-all"
+            [class.hover:bg-surface-container-low]="!rla.isActive"
+            [class.hover:text-on-surface]="!rla.isActive"
+            [class.hover:bg-primary]="rla.isActive"
             [class.justify-center]="sidebarCollapsed()"
           >
             <div class="flex items-center gap-space-md">
@@ -114,10 +122,14 @@
       @for (item of visibleSystem; track item.label) {
         @if (item.path) {
           <a
+            #rla="routerLinkActive"
             [routerLink]="item.path"
             routerLinkActive="bg-primary-container text-on-primary font-semibold shadow-sm"
             [title]="item.label"
-            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+            class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant transition-all"
+            [class.hover:bg-surface-container-low]="!rla.isActive"
+            [class.hover:text-on-surface]="!rla.isActive"
+            [class.hover:bg-primary]="rla.isActive"
             [class.justify-center]="sidebarCollapsed()"
           >
             <div class="flex items-center gap-space-md">

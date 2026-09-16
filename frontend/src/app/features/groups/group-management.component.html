@@ -1,0 +1,158 @@
+<div class="p-space-lg md:p-space-xl space-y-space-md">
+  <!-- Barra superior -->
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-card p-space-md rounded-xl shadow-sm">
+    <div class="flex flex-col">
+      <div class="flex items-center gap-space-sm">
+        <span class="p-space-xs rounded-lg bg-primary-container/10 text-primary-container">
+          <span class="material-symbols-outlined text-[20px]">workspaces</span>
+        </span>
+        <h1 class="font-headline-md text-headline-md text-on-surface">Gestión de Grupos de Soporte</h1>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">
+        {{ groups().length }} grupos disponibles para asignar usuarios, tickets y reglas de automatización.
+      </p>
+    </div>
+    <button
+      type="button"
+      (click)="toggleForm()"
+      class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+    >
+      <span class="material-symbols-outlined text-[18px]">{{ formMode() === 'closed' ? 'add' : 'close' }}</span>
+      {{ formMode() === 'closed' ? 'Nuevo Grupo' : 'Cancelar' }}
+    </button>
+  </div>
+
+  <!-- Panel inline de alta/edición -->
+  @if (formMode() !== 'closed') {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="bg-surface-card rounded-xl p-space-lg shadow-sm space-y-space-md">
+      <div class="flex items-center gap-space-xs">
+        <span class="material-symbols-outlined text-primary text-[20px]">{{ formMode() === 'create' ? 'add' : 'edit' }}</span>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface">
+          {{ formMode() === 'create' ? 'Nuevo Grupo de Soporte' : 'Editar Grupo · ' + (editingGroup()?.name ?? '') }}
+        </h2>
+      </div>
+
+      @if (formError(); as err) {
+        <div class="px-space-md py-space-xs rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm">
+          {{ err }}
+        </div>
+      }
+
+      <div class="space-y-space-2xs max-w-sm">
+        <label class="font-label-md text-label-md text-on-surface font-semibold">Nombre *</label>
+        <input
+          formControlName="name"
+          type="text"
+          placeholder="Ej: Redes, Hardware, Software..."
+          class="w-full h-11 px-space-md bg-surface-canvas rounded-lg text-on-surface font-body-md text-body-md shadow-sm outline-none focus:bg-surface-card transition-all"
+        />
+      </div>
+
+      <div class="pt-space-md flex items-center justify-end gap-space-sm">
+        <button
+          type="button"
+          (click)="closeForm()"
+          class="h-10 px-space-lg rounded-lg text-on-surface-variant hover:bg-surface-canvas font-label-md text-label-md transition-all"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          [disabled]="form.invalid || saving()"
+          class="h-10 px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary-container disabled:opacity-50 transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[18px]">save</span>
+          {{ saving() ? 'Guardando…' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  }
+
+  <!-- Buscador -->
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+    <div class="p-space-md flex flex-wrap items-center gap-space-sm">
+      <div class="relative flex-1 min-w-[260px]">
+        <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+        <input
+          class="w-full h-8 pl-9 pr-8 bg-surface-container-low rounded-lg text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm outline-none focus:bg-surface-elevated transition-colors"
+          placeholder="Buscar grupo por nombre..."
+          type="text"
+          [value]="searchTerm()"
+          (input)="onSearch($any($event.target).value)"
+        />
+      </div>
+    </div>
+  </div>
+
+  @if (deleteError(); as err) {
+    <div class="px-space-md py-space-sm rounded-lg bg-status-incident-bg text-status-incident font-body-sm text-body-sm flex items-center gap-space-xs">
+      <span class="material-symbols-outlined text-[18px]">error</span>
+      {{ err }}
+    </div>
+  }
+
+  <!-- Tabla -->
+  <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left whitespace-nowrap">
+        <thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          <tr>
+            <th class="px-space-md py-space-sm">Grupo</th>
+            <th class="px-space-md py-space-sm">Usuarios Asignados</th>
+            <th class="px-space-md py-space-sm text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="font-body-sm text-body-sm text-on-surface">
+          @if (loading()) {
+            <tr>
+              <td colspan="3" class="px-space-md py-space-lg text-center text-on-surface-variant">Cargando grupos…</td>
+            </tr>
+          } @else {
+            @for (group of filteredGroups(); track group.id) {
+              <tr class="hover:bg-surface-container-low/50 transition-colors border-t border-border-subtle">
+                <td class="px-space-md py-space-sm">
+                  <div class="flex items-center gap-space-sm">
+                    <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-semibold text-label-sm shrink-0">
+                      {{ group.name.charAt(0).toUpperCase() }}
+                    </div>
+                    <span class="font-label-md text-label-md text-on-surface font-semibold">{{ group.name }}</span>
+                  </div>
+                </td>
+                <td class="px-space-md py-space-sm text-on-surface-variant">
+                  <span class="px-space-xs py-space-2xs rounded-full bg-surface-container text-on-surface font-code-mono text-label-sm">
+                    {{ memberCount(group) }}
+                  </span>
+                </td>
+                <td class="px-space-md py-space-sm text-right">
+                  <div class="flex items-center justify-end gap-space-xs">
+                    <button
+                      type="button"
+                      (click)="openEdit(group)"
+                      class="p-space-2xs rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors inline-flex"
+                      title="Renombrar"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">edit</span>
+                    </button>
+                    <button
+                      type="button"
+                      (click)="remove(group)"
+                      [disabled]="memberCount(group) > 0 || deletingId() === group.id"
+                      class="p-space-2xs rounded hover:bg-error-container text-on-surface-variant hover:text-error transition-colors inline-flex disabled:opacity-30 disabled:cursor-not-allowed"
+                      [title]="memberCount(group) > 0 ? 'No se puede eliminar: tiene usuarios asignados' : 'Eliminar'"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="px-space-md py-space-lg text-center text-on-surface-variant">No hay grupos que coincidan con el filtro actual.</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

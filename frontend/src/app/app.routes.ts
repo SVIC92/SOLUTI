@@ -96,6 +96,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/users/user-management.component').then((m) => m.UserManagementComponent),
       },
+      {
+        path: 'groups',
+        canActivate: [roleGuard(['ADMIN'])],
+        loadComponent: () =>
+          import('./features/groups/group-management.component').then((m) => m.GroupManagementComponent),
+      },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

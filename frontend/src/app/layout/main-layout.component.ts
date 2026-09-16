@@ -55,8 +55,9 @@ export class MainLayoutComponent {
   ];
 
   private readonly system: NavItem[] = [
-    // Roles alineados con /users (ADMIN) y /automation (ADMIN) en app.routes.ts.
+    // Roles alineados con /users, /groups y /automation (todos ADMIN) en app.routes.ts.
     { label: 'Gestión de Usuarios', icon: 'group', path: '/users', roles: ['ADMIN'] },
+    { label: 'Grupos de Soporte', icon: 'workspaces', path: '/groups', roles: ['ADMIN'] },
     { label: 'Configuración', icon: 'settings', path: '/automation', roles: ['ADMIN'] },
   ];
 

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import type { SupportGroup } from '../../core/models/group.model';
 import type { RoleName, UserProfile } from '../../core/models/user.model';
 
 export interface CreateUserRequest {
@@ -36,9 +35,5 @@ export class UserService {
 
   update(id: string, request: AdminUpdateUserRequest): Observable<UserProfile> {
     return this.http.patch<UserProfile>(`${this.baseUrl}/${id}`, request);
-  }
-
-  listGroups(): Observable<SupportGroup[]> {
-    return this.http.get<SupportGroup[]>(`${environment.apiUrl}/support-groups`);
   }
 }

@@ -4,10 +4,10 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { SupportGroupService } from '../../core/services/support-group.service';
+import type { SupportGroup } from '../../core/models/group.model';
 import { AutomationRuleService } from './automation.service';
 import type { AutomationRule } from './automation.service';
-import { SupportGroupService } from './support-group.service';
-import type { SupportGroup } from './support-group.service';
 
 interface Category {
   id: string;
