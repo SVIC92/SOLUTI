@@ -83,7 +83,7 @@
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(30px, -20px) scale(1.08);
+    transform: translate(70px, -50px) scale(1.12);
   }
 }
 
@@ -93,7 +93,7 @@
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(-24px, 18px) scale(1.05);
+    transform: translate(-60px, 45px) scale(1.08);
   }
 }
 
@@ -105,6 +105,61 @@
   animation: driftBlobB 16s ease-in-out infinite;
 }
 
+// Circuitos digitales: la "corriente" recorre cada trazo en bucle infinito.
+@keyframes circuitFlow {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.circuit-trace {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 6 16;
+  opacity: 0.5;
+  animation: circuitFlow 20s linear infinite;
+}
+
+.circuit-trace--b {
+  animation-duration: 24s;
+  animation-direction: reverse;
+}
+
+.circuit-trace--c {
+  animation-duration: 28s;
+}
+
+// Nodos que laten como LEDs en los cruces del circuito.
+@keyframes nodeBlink {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.circuit-node {
+  animation: nodeBlink 3.2s ease-in-out infinite;
+}
+
+.circuit-node--2 {
+  animation-delay: 0.6s;
+}
+
+.circuit-node--3 {
+  animation-delay: 1.2s;
+}
+
+.circuit-node--4 {
+  animation-delay: 1.9s;
+}
+
+.circuit-node--5 {
+  animation-delay: 2.4s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mascot-hands path,
   .mascot-eyes,
@@ -113,7 +168,9 @@
   .btn-loading-bar::after,
   .btn-check,
   .bg-blob-a,
-  .bg-blob-b {
+  .bg-blob-b,
+  .circuit-trace,
+  .circuit-node {
     animation: none !important;
     transition: none !important;
   }

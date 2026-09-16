@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { AuthService } from '../../core/auth/auth.service';
+import { ThemeToggleComponent } from '../../core/theme/theme-toggle.component';
 
 type FocusableField = 'email' | 'password' | 'username' | 'ldapPassword';
 type SubmitState = 'idle' | 'loading' | 'success';
@@ -11,7 +12,7 @@ type SubmitState = 'idle' | 'loading' | 'success';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ThemeToggleComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

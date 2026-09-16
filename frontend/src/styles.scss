@@ -2,6 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables de color por tema (Claro/Oscuro/Black Neon). Cada valor es un triplete
+   "R G B" (sin `rgb()`) para que las utilidades de Tailwind con opacidad, como
+   `bg-primary/10`, sigan funcionando — ver el helper `withOpacity` en
+   `tailwind.config.js`. El tema activo lo controla `ThemeService` escribiendo
+   `data-theme` en `<html>` (por defecto "light", que usa los valores de :root). */
+:root {
+  --color-surface: 248 249 255;
+  --color-surface-canvas: 248 250 252;
+  --color-surface-card: 255 255 255;
+  --color-surface-container: 229 238 255;
+  --color-surface-container-low: 239 244 255;
+  --color-surface-container-high: 220 233 255;
+  --color-surface-elevated: 241 245 249;
+  --color-on-surface: 11 28 48;
+  --color-on-surface-variant: 70 69 85;
+  --color-on-secondary-container: 255 251 255;
+  --color-primary: 57 73 171;
+  --color-primary-container: 63 81 181;
+  --color-on-primary: 255 255 255;
+  --color-secondary: 113 42 226;
+  --color-secondary-container: 138 76 252;
+  --color-secondary-fixed: 234 221 255;
+  --color-tertiary: 0 77 112;
+  --color-ai-purple: 139 92 246;
+  --color-ai-purple-subtle: 245 243 255;
+  --color-cyber-cyan: 34 211 238;
+  --color-error: 186 26 26;
+  --color-error-container: 255 218 214;
+  --color-status-incident: 244 63 94;
+  --color-status-incident-bg: 255 241 242;
+  --color-status-resolved: 16 185 129;
+  --color-status-resolved-bg: 236 253 245;
+  --color-status-warning: 245 158 11;
+  --color-status-warning-bg: 255 251 235;
+  --color-border-subtle: 226 232 240;
+  --color-border-strong: 203 213 225;
+}
+
+[data-theme='dark'] {
+  --color-surface: 15 20 32;
+  --color-surface-canvas: 11 15 25;
+  --color-surface-card: 22 29 46;
+  --color-surface-container: 28 37 54;
+  --color-surface-container-low: 20 26 41;
+  --color-surface-container-high: 35 45 66;
+  --color-surface-elevated: 26 34 51;
+  --color-on-surface: 231 236 247;
+  --color-on-surface-variant: 154 164 189;
+  --color-on-secondary-container: 243 232 255;
+  --color-primary: 102 114 232;
+  --color-primary-container: 79 95 208;
+  --color-secondary: 167 139 250;
+  --color-secondary-container: 91 33 182;
+  --color-secondary-fixed: 76 29 149;
+  --color-tertiary: 56 189 248;
+  --color-ai-purple: 167 139 250;
+  --color-ai-purple-subtle: 46 16 101;
+  --color-error: 255 107 107;
+  --color-error-container: 92 26 26;
+  --color-status-incident: 251 113 133;
+  --color-status-incident-bg: 76 5 25;
+  --color-status-resolved: 52 211 153;
+  --color-status-resolved-bg: 6 78 59;
+  --color-status-warning: 251 191 36;
+  --color-status-warning-bg: 69 26 3;
+  --color-border-subtle: 42 51 70;
+  --color-border-strong: 61 74 99;
+}
+
+[data-theme='neon'] {
+  --color-surface: 0 0 0;
+  --color-surface-canvas: 0 0 0;
+  --color-surface-card: 10 10 15;
+  --color-surface-container: 13 13 20;
+  --color-surface-container-low: 8 8 12;
+  --color-surface-container-high: 20 20 31;
+  --color-surface-elevated: 15 15 22;
+  --color-on-surface: 234 252 255;
+  --color-on-surface-variant: 143 163 196;
+  --color-on-secondary-container: 245 232 255;
+  --color-primary: 76 77 219;
+  --color-primary-container: 108 99 255;
+  --color-secondary: 147 51 234;
+  --color-secondary-container: 168 85 247;
+  --color-secondary-fixed: 59 7 100;
+  --color-tertiary: 56 189 248;
+  --color-ai-purple: 192 132 252;
+  --color-ai-purple-subtle: 46 16 101;
+  --color-cyber-cyan: 103 232 249;
+  --color-error: 255 59 92;
+  --color-error-container: 69 10 30;
+  --color-status-incident: 251 113 133;
+  --color-status-incident-bg: 63 13 23;
+  --color-status-resolved: 74 222 128;
+  --color-status-resolved-bg: 5 46 28;
+  --color-status-warning: 251 191 36;
+  --color-status-warning-bg: 63 38 4;
+  --color-border-subtle: 28 28 46;
+  --color-border-strong: 46 46 74;
+}
+
 /* Reset/base tomado literalmente de las pantallas exportadas de Stitch, para que el
    look & feel (SoluTI_AI design system) sea idéntico al de los mockups. */
 html,
@@ -13,6 +114,9 @@ body {
 }
 body {
   overscroll-behavior: none;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }
 ::-webkit-scrollbar {
   display: none;

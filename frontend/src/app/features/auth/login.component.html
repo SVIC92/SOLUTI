@@ -1,8 +1,30 @@
 <div class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between">
-  <!-- Fondo ambiental sutil, con un leve movimiento de deriva -->
-  <div class="fixed inset-0 pointer-events-none overflow-hidden">
-    <div class="bg-blob-a absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[340px] bg-primary-container/5 rounded-full blur-3xl"></div>
-    <div class="bg-blob-b absolute bottom-0 right-10 w-80 h-80 bg-ai-purple/5 rounded-full blur-3xl"></div>
+  <!-- Fondo tecnológico: resplandor índigo/cian a la deriva + circuitos digitales en bucle -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden bg-surface">
+    <div class="bg-blob-a absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[340px] bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="bg-blob-b absolute bottom-0 right-10 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl"></div>
+
+    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 600" aria-hidden="true">
+      <defs>
+        <pattern id="circuitGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M0 40 H30 V10 H80" fill="none" class="stroke-primary" stroke-width="1" opacity="0.12" />
+          <path d="M40 80 V50 H80" fill="none" class="stroke-primary" stroke-width="1" opacity="0.12" />
+          <circle cx="30" cy="10" r="2" class="fill-primary" opacity="0.18" />
+          <circle cx="40" cy="50" r="2" class="fill-primary" opacity="0.18" />
+        </pattern>
+      </defs>
+      <rect width="800" height="600" fill="url(#circuitGrid)" />
+
+      <path d="M0 120 H180 V60 H420 V180 H800" class="circuit-trace circuit-trace--a stroke-primary" stroke-width="1.5" />
+      <path d="M0 480 H240 V420 H520 V520 H800" class="circuit-trace circuit-trace--b stroke-cyber-cyan" stroke-width="1.5" />
+      <path d="M120 0 V160 H320 V340 V600" class="circuit-trace circuit-trace--c stroke-primary" stroke-width="1.5" />
+
+      <circle cx="180" cy="120" r="3" class="circuit-node circuit-node--1 fill-primary" />
+      <circle cx="420" cy="180" r="3" class="circuit-node circuit-node--2 fill-primary" />
+      <circle cx="240" cy="480" r="3" class="circuit-node circuit-node--3 fill-cyber-cyan" />
+      <circle cx="520" cy="520" r="3" class="circuit-node circuit-node--4 fill-cyber-cyan" />
+      <circle cx="320" cy="340" r="3" class="circuit-node circuit-node--5 fill-primary" />
+    </svg>
   </div>
 
   <header class="w-full relative z-10 py-4 px-6 max-w-7xl mx-auto flex items-center justify-between">
@@ -10,6 +32,7 @@
       <span class="w-2 h-2 rounded-full bg-status-resolved"></span>
       <span>Sistemas Operacionales</span>
     </div>
+    <app-theme-toggle />
   </header>
 
   <main class="w-full relative z-10 flex-1 flex items-center justify-center px-4 py-8">

@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import type { RoleName } from '../core/models/user.model';
+import { ThemeToggleComponent } from '../core/theme/theme-toggle.component';
 
 interface NavItem {
   label: string;
@@ -25,7 +26,7 @@ interface NavItem {
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet, ThemeToggleComponent],
   templateUrl: './main-layout.component.html',
 })
 export class MainLayoutComponent {
