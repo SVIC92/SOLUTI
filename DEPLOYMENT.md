@@ -56,9 +56,9 @@ reales, no se repiten aquí por ser secretos):
 `environment.prod.ts` → push → Vercel → anotar su URL → volver a Render y setear
 `FRONTEND_URL`.
 
-## 3. ai-service — Hugging Face Spaces (Docker, free tier)
+## 3. ai-service — Hugging Face Spaces (SDK Gradio, free tier)
 
-### Por qué esta plataforma
+### Por qué esta plataforma, y por qué SDK Gradio y no Docker
 
 En producción el `ai-service` son **5 procesos**, no uno: la API FastAPI (`app.main:app`)
 más 4 *workers* en loop infinito consumiendo Redis Streams (`triage_worker`,
@@ -70,10 +70,19 @@ real es de ~6-8GB de RAM repartidos en 5 servicios.
 
 Se evaluó Oracle Cloud "Always Free" (gratis de por vida pero requiere administrar una
 VM propia: Docker, firewall, TLS) y Fly.io (ya no tiene tier gratuito real, ~$12/mes).
-**Se eligió Hugging Face Spaces** (Docker SDK): gratis de por vida en el tier de CPU, con
-~16GB de RAM disponibles — de sobra para los 5 procesos sin necesidad de fusionarlos en
-uno solo — y sin que haya que administrar servidor, firewall ni certificados TLS (los
-resuelve la plataforma).
+**Se eligió Hugging Face Spaces**: gratis de por vida en el tier de CPU, con ~16GB de RAM
+— de sobra para los 5 procesos sin necesidad de fusionarlos en uno solo — y sin que haya
+que administrar servidor, firewall ni certificados TLS.
+
+**El SDK es Gradio, no Docker:** el selector de SDK al crear un Space (`huggingface.co/
+new-space`) muestra el SDK **Docker con candado "Paid"** — a diferencia de lo que se
+pensó en un primer momento, no es solo una verificación de tarjeta, Hugging Face
+directamente lo restringe a planes de pago. **Gradio y Static sí son gratis sin
+tarjeta.** El runtime "Gradio" de Spaces simplemente prepara un venv desde
+`requirements.txt` y ejecuta el archivo indicado en `app_file` — no exige que el
+proceso use la librería `gradio` en sí, solo que algo quede escuchando en el puerto
+expuesto. Por eso `hf_space_entrypoint.py` (ver más abajo) es Python puro sin ninguna
+llamada a `gradio`: solo aprovecha que este SDK no pide tarjeta.
 
 **Limitación conocida:** un Space gratuito "duerme" tras un período sin tráfico HTTP, y
 con él mueren los 4 workers en segundo plano. Se resuelve con un *keep-alive* externo
@@ -81,28 +90,27 @@ gratuito (paso 4 más abajo) que llama a `/health` cada pocos minutos.
 
 ### Archivos de este repo para el Space
 
-Como Hugging Face Spaces solo admite **un** Dockerfile/contenedor por Space (a
-diferencia del `docker-compose.yml` on-premise, con 5 contenedores), se agregaron
-archivos específicos que **no** reemplazan a los usados por `docker-compose.yml`:
-
-- `services/ai-service/Dockerfile.huggingface` — build de un solo contenedor.
-- `services/ai-service/entrypoint.huggingface.sh` — lanza los 4 workers como procesos de
-  fondo (con reintento si alguno muere) y la API en primer plano.
+- `services/ai-service/hf_space_entrypoint.py` — arranca los 4 workers como subprocesos
+  Python (con reintento si alguno muere) y sirve la API FastAPI existente vía `uvicorn`.
 - `services/ai-service/README.huggingface.md` — metadata YAML que Hugging Face requiere
-  en la raíz del Space (sdk, puerto, etc.).
+  en la raíz del Space (`sdk: gradio`, `app_file`, puerto, etc.).
+- `services/ai-service/Dockerfile.huggingface` y `entrypoint.huggingface.sh` — **no se
+  usan por ahora** (quedan listos por si el SDK Docker se habilita más adelante, ej. con
+  un plan de pago futuro).
 
 ### Pasos para desplegar
 
 1. **Crear el Space**: [huggingface.co/new-space](https://huggingface.co/new-space) →
-   SDK **Docker** → visibilidad Private o Public según prefieras. Esto crea un repo git
+   SDK **Gradio** → visibilidad Private o Public según prefieras. Esto crea un repo git
    propio del Space (separado de este monorepo).
 2. **Copiar el contenido** de `services/ai-service/` (carpeta `app/`, `migrations/`,
-   `requirements.txt`) al repo del Space, y además:
-   - `Dockerfile.huggingface` → renombrar a `Dockerfile` en la raíz del Space.
-   - `entrypoint.huggingface.sh` → renombrar a `entrypoint.sh` en la raíz del Space.
+   `hf_space_entrypoint.py`) al repo del Space, y además:
+   - `requirements.txt` — copiar tal cual y agregar una línea al final: `gradio>=4.0,<5`
+     (Hugging Face ya preinstala gradio por el SDK, pero así queda explícito y fijado).
    - `README.huggingface.md` → renombrar a `README.md` en la raíz del Space (Hugging
      Face lee el front matter YAML de ahí para configurar el Space).
-   - El `Dockerfile` original del monorepo **no** se copia (es el de docker-compose).
+   - `Dockerfile.huggingface`/`entrypoint.huggingface.sh` **no** se copian (no se usan
+     con SDK Gradio).
 3. **Variables de entorno** en Settings → Repository secrets del Space (mismos nombres
    que `services/ai-service/.env.example`):
    - `DATABASE_URL` — la misma Neon Postgres que usa el backend.
