@@ -4,19 +4,16 @@
     [class.w-64]="!sidebarCollapsed()"
     [class.w-20]="sidebarCollapsed()"
   >
-    <button
-      type="button"
-      (click)="toggleSidebar()"
-      class="absolute -right-3 top-20 w-6 h-6 rounded-full bg-surface-card border border-border-subtle shadow-sm flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors z-10"
-      [title]="sidebarCollapsed() ? 'Expandir menú' : 'Contraer menú'"
-    >
-      <span class="material-symbols-outlined text-[16px]">{{ sidebarCollapsed() ? 'chevron_right' : 'chevron_left' }}</span>
-    </button>
-
     <div class="h-16 px-gutter flex items-center gap-space-sm bg-surface-card" [class.justify-center]="sidebarCollapsed()">
-      <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shrink-0">
-        <span class="material-symbols-outlined text-[20px]">neurology</span>
-      </div>
+      <button
+        type="button"
+        (click)="toggleSidebar()"
+        class="group w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shrink-0 hover:bg-primary transition-colors"
+        [title]="sidebarCollapsed() ? 'Expandir menú' : 'Contraer menú'"
+      >
+        <span class="material-symbols-outlined text-[20px] group-hover:hidden">neurology</span>
+        <span class="material-symbols-outlined text-[20px] hidden group-hover:inline">{{ sidebarCollapsed() ? 'chevron_right' : 'chevron_left' }}</span>
+      </button>
       @if (!sidebarCollapsed()) {
         <div class="flex flex-col overflow-hidden">
           <span class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight whitespace-nowrap">SoluTI_AI</span>
