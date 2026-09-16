@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, inject, signal, computed } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
@@ -29,13 +29,15 @@ export class LoginComponent {
 
   readonly submitState = signal<SubmitState>('idle');
 
-  // Estado de la mascota: qué campo tiene foco (para que los ojos "sigan" el
-  // texto) y cuánto se ha escrito (para desplazar la mirada horizontalmente).
+  // Estado de la mascota: qué campo tiene foco (para cubrirse los ojos al
+  // escribir la contraseña) y hacia dónde mira (sigue al cursor del mouse).
+  @ViewChild('mascotHead') private mascotHead?: ElementRef<SVGSVGElement>;
+
   readonly focusedField = signal<FocusableField | null>(null);
-  readonly typedLength = signal(0);
   readonly showPassword = signal(false);
   readonly showLdapPassword = signal(false);
   readonly eyeBlinkTrigger = signal(0);
+  readonly eyeOffset = signal({ x: 0, y: 0 });
 
   readonly eyesCovered = computed(
     () => this.focusedField() === 'password' || this.focusedField() === 'ldapPassword',
@@ -43,15 +45,26 @@ export class LoginComponent {
   readonly eyesPeeking = computed(
     () => this.eyesCovered() && (this.showPassword() || this.showLdapPassword()),
   );
-  readonly eyeShiftX = computed(() => {
-    const field = this.focusedField();
-    if (field !== 'email' && field !== 'username') return 0;
-    const ratio = Math.min(this.typedLength() / 20, 1);
-    return -4 + ratio * 8;
-  });
 
   get eyeBlinkClass(): string {
     return this.eyeBlinkTrigger() % 2 === 0 ? 'eye-blink-a' : 'eye-blink-b';
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent): void {
+    if (this.eyesCovered() || !this.mascotHead) return;
+
+    const rect = this.mascotHead.nativeElement.getBoundingClientRect();
+    const dx = event.clientX - (rect.left + rect.width / 2);
+    const dy = event.clientY - (rect.top + rect.height / 2);
+    const distance = Math.hypot(dx, dy) || 1;
+    const maxX = 5;
+    const maxY = 3;
+
+    this.eyeOffset.set({
+      x: (dx / distance) * maxX,
+      y: (dy / distance) * maxY,
+    });
   }
 
   form = this.fb.nonNullable.group({
@@ -82,10 +95,6 @@ export class LoginComponent {
 
   onFieldBlur(field: FocusableField): void {
     if (this.focusedField() === field) this.focusedField.set(null);
-  }
-
-  onTextInput(event: Event): void {
-    this.typedLength.set((event.target as HTMLInputElement).value.length);
   }
 
   togglePasswordVisibility(): void {

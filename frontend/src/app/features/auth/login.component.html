@@ -16,12 +16,12 @@
     <div class="w-full max-w-[440px] flex flex-col items-center">
       <div class="mb-6 flex flex-col items-center text-center">
         <!-- Mascota: sigue con la mirada el campo de texto activo y se cubre los ojos al enfocar la contraseña -->
-        <svg viewBox="0 0 120 96" class="w-20 h-16 mb-1" aria-hidden="true">
+        <svg #mascotHead viewBox="0 0 120 96" class="w-20 h-16 mb-1 overflow-hidden" aria-hidden="true">
           <line x1="60" y1="4" x2="60" y2="15" class="stroke-border-strong" stroke-width="3" stroke-linecap="round" />
           <circle cx="60" cy="4" r="4" class="fill-ai-purple" />
           <rect x="14" y="15" width="92" height="70" rx="26" class="fill-surface-card stroke-border-subtle" stroke-width="2" />
 
-          <g class="mascot-eyes" [attr.transform]="'translate(' + eyeShiftX() + ', 0)'">
+          <g class="mascot-eyes" [attr.transform]="'translate(' + eyeOffset().x + ', ' + eyeOffset().y + ')'">
             <circle cx="46" cy="51" r="12" class="fill-surface" />
             <circle cx="46" cy="51" r="6" class="fill-on-surface" />
             <circle cx="74" cy="51" r="12" class="fill-surface" />
@@ -76,14 +76,13 @@
                 placeholder=" "
                 (focus)="onFieldFocus('username')"
                 (blur)="onFieldBlur('username')"
-                (input)="onTextInput($event)"
-                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-6 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
               />
               <label
                 for="ldapUsername"
                 class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
-                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
-                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+                       peer-focus:top-1 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
               >Usuario de Red</label>
             </div>
 
@@ -97,13 +96,13 @@
                 placeholder=" "
                 (focus)="onFieldFocus('ldapPassword')"
                 (blur)="onFieldBlur('ldapPassword')"
-                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-6 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
               />
               <label
                 for="ldapPassword"
                 class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
-                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
-                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+                       peer-focus:top-1 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
               >Contraseña</label>
               <button
                 type="button"
@@ -156,14 +155,13 @@
                 placeholder=" "
                 (focus)="onFieldFocus('email')"
                 (blur)="onFieldBlur('email')"
-                (input)="onTextInput($event)"
-                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-6 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
               />
               <label
                 for="userEmail"
                 class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
-                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
-                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+                       peer-focus:top-1 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
               >Correo Corporativo</label>
             </div>
 
@@ -177,13 +175,13 @@
                 placeholder=" "
                 (focus)="onFieldFocus('password')"
                 (blur)="onFieldBlur('password')"
-                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-6 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
               />
               <label
                 for="userPassword"
                 class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
-                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
-                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+                       peer-focus:top-1 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
               >Contraseña</label>
               <button
                 type="button"
