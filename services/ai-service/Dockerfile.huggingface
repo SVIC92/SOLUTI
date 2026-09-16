@@ -1,0 +1,25 @@
+# Dockerfile SOLO para el Space de Hugging Face — ver DEPLOYMENT.md sección 3.
+# Distinto del `Dockerfile` del monorepo (usado por `docker-compose.yml` en
+# despliegue on-premise, donde API y workers son 5 contenedores independientes):
+# un Space de Hugging Face solo admite un Dockerfile/contenedor, así que aquí todo
+# corre junto vía `entrypoint.huggingface.sh`.
+#
+# Al desplegar: este archivo se copia como `Dockerfile` en la raíz del repo del
+# Space, y `entrypoint.huggingface.sh` como `entrypoint.sh` (ver instrucciones en
+# DEPLOYMENT.md).
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN chmod +x entrypoint.sh
+
+# Hugging Face Spaces expone este puerto por defecto (ver `app_port` en el front
+# matter de README.huggingface.md si hiciera falta cambiarlo).
+EXPOSE 7860
+
+CMD ["./entrypoint.sh"]

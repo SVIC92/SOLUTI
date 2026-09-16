@@ -1,7 +1,7 @@
 # Despliegue en producción
 
-Estado: **frontend (Vercel)** y **backend (Render)** documentados y con la config lista.
-**ai-service** — análisis de costo/arquitectura hecho, plataforma aún **sin decidir**.
+Estado: **frontend (Vercel)**, **backend (Render)** y **ai-service (Hugging Face
+Spaces)** documentados y con la config lista.
 
 ---
 
@@ -56,54 +56,66 @@ reales, no se repiten aquí por ser secretos):
 `environment.prod.ts` → push → Vercel → anotar su URL → volver a Render y setear
 `FRONTEND_URL`.
 
-## 3. ai-service — hallazgos de arquitectura y costo (pendiente de decidir plataforma)
+## 3. ai-service — Hugging Face Spaces (Docker, free tier)
 
-### El problema no es la plataforma, es cómo se empaquetan los procesos
+### Por qué esta plataforma
 
-En producción el `ai-service` son **5 procesos**, no uno:
-- La API FastAPI (`app.main:app` — chatbot, copilot, anomaly-clusters bajo demanda).
-- 4 *workers* en loop infinito consumiendo Redis Streams: `triage_worker`,
-  `embedding_worker`, `anomaly_scheduler`, `kb_generator_worker`
-  (ver `docker-compose.yml` raíz — así están modelados hoy, como servicios separados).
+En producción el `ai-service` son **5 procesos**, no uno: la API FastAPI (`app.main:app`)
+más 4 *workers* en loop infinito consumiendo Redis Streams (`triage_worker`,
+`embedding_worker`, `anomaly_scheduler`, `kb_generator_worker` — ver `docker-compose.yml`
+en la raíz, que los modela como 5 contenedores separados para on-premise). Cada uno carga
+su propia copia del modelo `BAAI/bge-m3` (~1-2GB en RAM vía `@lru_cache` en
+`app/core/embeddings.py`, caché *por proceso*), así que sin fusionarlos el requerimiento
+real es de ~6-8GB de RAM repartidos en 5 servicios.
 
-Cada proceso que llama a `embed_text`/`embed_batch` (`app/core/embeddings.py`) carga su
-**propia copia** del modelo `BAAI/bge-m3` (~1-2GB en RAM) vía `@lru_cache` — el caché es
-*por proceso*, no compartido. Si se despliegan los 5 como servicios/contenedores
-independientes (tal como sugiere el `docker-compose.yml`), varios de ellos duplican esa
-carga de memoria, multiplicando el RAM necesario y, en plataformas tipo Render, el número
-de servicios pagos (Render no tiene *Background Workers* gratis).
+Se evaluó Oracle Cloud "Always Free" (gratis de por vida pero requiere administrar una
+VM propia: Docker, firewall, TLS) y Fly.io (ya no tiene tier gratuito real, ~$12/mes).
+**Se eligió Hugging Face Spaces** (Docker SDK): gratis de por vida en el tier de CPU, con
+~16GB de RAM disponibles — de sobra para los 5 procesos sin necesidad de fusionarlos en
+uno solo — y sin que haya que administrar servidor, firewall ni certificados TLS (los
+resuelve la plataforma).
 
-### El hallazgo: los 4 workers son fusionables en un solo proceso
+**Limitación conocida:** un Space gratuito "duerme" tras un período sin tráfico HTTP, y
+con él mueren los 4 workers en segundo plano. Se resuelve con un *keep-alive* externo
+gratuito (paso 4 más abajo) que llama a `/health` cada pocos minutos.
 
-Revisé los 4 archivos en `app/workers/`: son corutinas `asyncio` pequeñas (33-104 líneas),
-sin hilos ni bloqueos, cada una con su propio `async def main()`. Son perfectamente aptas
-para correr como *background tasks* (`asyncio.create_task(...)`) dentro del **mismo
-proceso** que sirve la API FastAPI, compartiendo el mismo event loop.
+### Archivos de este repo para el Space
 
-**Por qué importa:** al compartir proceso, `_get_model()` (el `@lru_cache` de
-`embeddings.py`) se resuelve una sola vez para *todos* los consumidores — el modelo de
-embeddings se carga **una vez**, no 2-3 veces. Esto baja el requerimiento de memoria de
-"~6-8GB repartidos en 5 servicios" a "~2GB en un solo proceso/servicio".
+Como Hugging Face Spaces solo admite **un** Dockerfile/contenedor por Space (a
+diferencia del `docker-compose.yml` on-premise, con 5 contenedores), se agregaron
+archivos específicos que **no** reemplazan a los usados por `docker-compose.yml`:
 
-**Qué falta para esto:** un pequeño entrypoint nuevo (p. ej. `app/combined_runner.py`) que
-levante uvicorn y las 4 corutinas `main()` de los workers como tareas de fondo del mismo
-proceso — no existe todavía, es la primera tarea de implementación cuando se retome esto.
+- `services/ai-service/Dockerfile.huggingface` — build de un solo contenedor.
+- `services/ai-service/entrypoint.huggingface.sh` — lanza los 4 workers como procesos de
+  fondo (con reintento si alguno muere) y la API en primer plano.
+- `services/ai-service/README.huggingface.md` — metadata YAML que Hugging Face requiere
+  en la raíz del Space (sdk, puerto, etc.).
 
-### Comparativa de plataformas (asumiendo el proceso ya fusionado, ~2GB RAM)
+### Pasos para desplegar
 
-| Opción | Costo aprox. | Esfuerzo | Notas |
-|---|---|---|---|
-| **Oracle Cloud "Always Free"** | $0/mes de por vida | Alto | VM ARM propia (4 OCPU/24GB) — administra tú Docker, firewall, TLS (Caddy/nginx), updates. El `docker-compose.yml` del repo casi sirve tal cual si no se fusionan los procesos; con fusión, solo correría un contenedor ahí. |
-| **Fly.io** | ~$12/mes (shared-cpu-1x/2GB, pago por segundo) | Medio | Reutiliza el `Dockerfile` existente casi sin cambios. Requiere `flyctl` + `fly.toml`. |
-| **Render** | Sin confirmar — la tabla de precios no se pudo extraer vía fetch automático; verificar en render.com/pricing antes de decidir | Bajo | Mismo dashboard que el backend; un solo Web Service en vez de 5. |
-
-### Pendiente / próxima decisión
-
-1. Elegir plataforma (Oracle / Fly.io / Render) — **no decidido todavía**.
-2. Escribir `app/combined_runner.py` (fusión de los 4 workers + API en un proceso).
-3. Adaptar `Dockerfile` para usar ese entrypoint fusionado en vez de solo `uvicorn`.
-4. Variables de entorno del ai-service en la plataforma elegida — mismas que
-   `services/ai-service/.env` local, cambiando `BACKEND_URL` a la URL pública de Render
-   (no `localhost`) y `REDIS_URL` al mismo Upstash usado por el backend.
-5. Actualizar `AI_SERVICE_URL`/`AI_SERVICE_API_KEY` en el backend (Render) para apuntar al
-   ai-service ya desplegado, reemplazando el valor local/placeholder.
+1. **Crear el Space**: [huggingface.co/new-space](https://huggingface.co/new-space) →
+   SDK **Docker** → visibilidad Private o Public según prefieras. Esto crea un repo git
+   propio del Space (separado de este monorepo).
+2. **Copiar el contenido** de `services/ai-service/` (carpeta `app/`, `migrations/`,
+   `requirements.txt`) al repo del Space, y además:
+   - `Dockerfile.huggingface` → renombrar a `Dockerfile` en la raíz del Space.
+   - `entrypoint.huggingface.sh` → renombrar a `entrypoint.sh` en la raíz del Space.
+   - `README.huggingface.md` → renombrar a `README.md` en la raíz del Space (Hugging
+     Face lee el front matter YAML de ahí para configurar el Space).
+   - El `Dockerfile` original del monorepo **no** se copia (es el de docker-compose).
+3. **Variables de entorno** en Settings → Repository secrets del Space (mismos nombres
+   que `services/ai-service/.env.example`):
+   - `DATABASE_URL` — la misma Neon Postgres que usa el backend.
+   - `REDIS_URL` — el mismo Upstash (`rediss://...`) configurado en el backend (Render).
+   - `BACKEND_URL` — URL pública del backend en Render + `/api/v1` (no `localhost`).
+   - `GEMINI_API_KEY`, `GEMINI_MODEL_FAST`, `GEMINI_MODEL_PRO`.
+   - `EMBEDDING_MODEL_NAME=BAAI/bge-m3`, `EMBEDDING_DIM=1024`.
+   - `AI_SERVICE_API_KEY` — el mismo valor que `AI_SERVICE_API_KEY` en el backend.
+   - `TRIAGE_CONFIDENCE_THRESHOLD=0.7`, `LOG_LEVEL=info`.
+4. **Keep-alive**: en [cron-job.org](https://cron-job.org) (gratis) crear un job que
+   haga `GET` a `https://<tu-space>.hf.space/health` cada 5-10 minutos, para que el
+   Space nunca llegue a dormirse y los workers de Redis Streams sigan consumiendo.
+5. **Backend (Render)**: actualizar `AI_SERVICE_URL` a `https://<tu-space>.hf.space` y
+   `AI_SERVICE_API_KEY` al mismo valor del paso 3 — mientras esto no esté seteado,
+   `ai-client.ts` devuelve 503 sin romper el resto del backend (comportamiento normal en
+   "modo degradado").
