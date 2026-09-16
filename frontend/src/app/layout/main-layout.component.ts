@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import type { RoleName } from '../core/models/user.model';
@@ -29,7 +29,12 @@ interface NavItem {
   templateUrl: './main-layout.component.html',
 })
 export class MainLayoutComponent {
+  private static readonly SIDEBAR_COLLAPSED_KEY = 'soluti_sidebar_collapsed';
+
   readonly auth = inject(AuthService);
+
+  // Preferencia puramente visual por navegador; no hay necesidad de sincronizarla con el backend.
+  readonly sidebarCollapsed = signal(this.readCollapsedPreference());
 
   private readonly operations: NavItem[] = [
     { label: 'Panel Principal', icon: 'dashboard', path: '/dashboard' },
@@ -75,5 +80,23 @@ export class MainLayoutComponent {
 
   logout(): void {
     this.auth.logout();
+  }
+
+  toggleSidebar(): void {
+    const next = !this.sidebarCollapsed();
+    this.sidebarCollapsed.set(next);
+    try {
+      localStorage.setItem(MainLayoutComponent.SIDEBAR_COLLAPSED_KEY, next ? '1' : '0');
+    } catch {
+      // localStorage puede no estar disponible (modo privado); la preferencia solo no persiste.
+    }
+  }
+
+  private readCollapsedPreference(): boolean {
+    try {
+      return localStorage.getItem(MainLayoutComponent.SIDEBAR_COLLAPSED_KEY) === '1';
+    } catch {
+      return false;
+    }
   }
 }

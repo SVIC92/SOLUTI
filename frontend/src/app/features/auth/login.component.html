@@ -1,8 +1,8 @@
 <div class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between">
-  <!-- Fondo ambiental sutil, tomado del diseño original -->
+  <!-- Fondo ambiental sutil, con un leve movimiento de deriva -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[340px] bg-primary-container/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-10 w-80 h-80 bg-ai-purple/5 rounded-full blur-3xl"></div>
+    <div class="bg-blob-a absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[340px] bg-primary-container/5 rounded-full blur-3xl"></div>
+    <div class="bg-blob-b absolute bottom-0 right-10 w-80 h-80 bg-ai-purple/5 rounded-full blur-3xl"></div>
   </div>
 
   <header class="w-full relative z-10 py-4 px-6 max-w-7xl mx-auto flex items-center justify-between">
@@ -15,12 +15,28 @@
   <main class="w-full relative z-10 flex-1 flex items-center justify-center px-4 py-8">
     <div class="w-full max-w-[440px] flex flex-col items-center">
       <div class="mb-6 flex flex-col items-center text-center">
-        <div class="flex items-center gap-2.5 mb-2">
-          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
-            <span class="material-symbols-outlined text-2xl font-bold">neurology</span>
-          </div>
-          <span class="text-2xl font-bold tracking-tight text-on-surface">SoluTI<span class="text-primary-container">_AI</span></span>
-        </div>
+        <!-- Mascota: sigue con la mirada el campo de texto activo y se cubre los ojos al enfocar la contraseña -->
+        <svg viewBox="0 0 120 96" class="w-20 h-16 mb-1" aria-hidden="true">
+          <line x1="60" y1="4" x2="60" y2="15" class="stroke-border-strong" stroke-width="3" stroke-linecap="round" />
+          <circle cx="60" cy="4" r="4" class="fill-ai-purple" />
+          <rect x="14" y="15" width="92" height="70" rx="26" class="fill-surface-card stroke-border-subtle" stroke-width="2" />
+
+          <g class="mascot-eyes" [attr.transform]="'translate(' + eyeShiftX() + ', 0)'">
+            <circle cx="46" cy="51" r="12" class="fill-surface" />
+            <circle cx="46" cy="51" r="6" class="fill-on-surface" />
+            <circle cx="74" cy="51" r="12" class="fill-surface" />
+            <circle cx="74" cy="51" r="6" class="fill-on-surface" />
+          </g>
+
+          <path d="M 48 69 Q 60 77 72 69" fill="none" class="stroke-on-surface-variant" stroke-width="3" stroke-linecap="round" />
+
+          <g class="mascot-hands" [class.mascot-hands--cover]="eyesCovered()" [class.mascot-hands--peek]="eyesPeeking()">
+            <path d="M28 39 Q46 29 58 41 Q46 59 28 65 Z" class="fill-primary-container" />
+            <path d="M92 39 Q74 29 62 41 Q74 59 92 65 Z" class="fill-primary-container" />
+          </g>
+        </svg>
+
+        <span class="text-2xl font-bold tracking-tight text-on-surface">SoluTI<span class="text-primary-container">_AI</span></span>
         <h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight mt-1">Iniciar Sesión</h1>
         <p class="font-body-md text-body-md text-on-surface-variant mt-1">Bienvenido a SoluTI_AI Enterprise</p>
       </div>
@@ -49,35 +65,54 @@
         }
 
         @if (ldapMode()) {
-          <form class="space-y-4" [formGroup]="ldapForm" (ngSubmit)="submitLdap()">
-            <div>
-              <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5" for="ldapUsername">Usuario de Red</label>
-              <div class="relative flex items-center">
-                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none">badge</span>
-                <input
-                  id="ldapUsername"
-                  type="text"
-                  formControlName="username"
-                  autocomplete="username"
-                  placeholder="jperez"
-                  class="w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 py-2.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                />
-              </div>
+          <form class="space-y-5" [formGroup]="ldapForm" (ngSubmit)="submitLdap()">
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none z-10">badge</span>
+              <input
+                id="ldapUsername"
+                type="text"
+                formControlName="username"
+                autocomplete="username"
+                placeholder=" "
+                (focus)="onFieldFocus('username')"
+                (blur)="onFieldBlur('username')"
+                (input)="onTextInput($event)"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+              />
+              <label
+                for="ldapUsername"
+                class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
+                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+              >Usuario de Red</label>
             </div>
 
-            <div>
-              <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5" for="ldapPassword">Contraseña</label>
-              <div class="relative flex items-center">
-                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none">lock</span>
-                <input
-                  id="ldapPassword"
-                  type="password"
-                  formControlName="password"
-                  autocomplete="current-password"
-                  placeholder="••••••••••••"
-                  class="w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 py-2.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                />
-              </div>
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none z-10">lock</span>
+              <input
+                id="ldapPassword"
+                [type]="showLdapPassword() ? 'text' : 'password'"
+                formControlName="password"
+                autocomplete="current-password"
+                placeholder=" "
+                (focus)="onFieldFocus('ldapPassword')"
+                (blur)="onFieldBlur('ldapPassword')"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+              />
+              <label
+                for="ldapPassword"
+                class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
+                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+              >Contraseña</label>
+              <button
+                type="button"
+                (click)="toggleLdapPasswordVisibility()"
+                class="absolute right-3 text-on-surface-variant hover:text-on-surface transition-colors z-10"
+                [title]="showLdapPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              >
+                <span class="material-symbols-outlined text-lg" [class]="eyeBlinkClass">{{ showLdapPassword() ? 'visibility_off' : 'visibility' }}</span>
+              </button>
             </div>
 
             @if (errorMessage) {
@@ -87,46 +122,77 @@
             <div class="pt-2">
               <button
                 type="submit"
-                [disabled]="ldapForm.invalid"
-                class="w-full bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary py-2.5 px-4 rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
+                [disabled]="ldapForm.invalid || submitState() !== 'idle'"
+                class="relative overflow-hidden w-full bg-primary hover:bg-primary-container text-on-primary py-2.5 px-4 rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
+                [class.opacity-50]="ldapForm.invalid && submitState() === 'idle'"
+                [class.bg-status-resolved]="submitState() === 'success'"
               >
-                <span>Iniciar Sesión</span>
-                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                @switch (submitState()) {
+                  @case ('loading') {
+                    <span class="btn-loading-bar"></span>
+                    <span class="relative z-10">Verificando...</span>
+                  }
+                  @case ('success') {
+                    <span class="material-symbols-outlined text-lg btn-check relative z-10">check_circle</span>
+                    <span class="relative z-10">¡Bienvenido!</span>
+                  }
+                  @default {
+                    <span class="relative z-10">Iniciar Sesión</span>
+                    <span class="material-symbols-outlined text-lg relative z-10">arrow_forward</span>
+                  }
+                }
               </button>
             </div>
           </form>
         } @else {
-          <form class="space-y-4" [formGroup]="form" (ngSubmit)="submit()">
-            <div>
-              <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5" for="userEmail">Correo Corporativo</label>
-              <div class="relative flex items-center">
-                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none">mail</span>
-                <input
-                  id="userEmail"
-                  type="email"
-                  formControlName="email"
-                  autocomplete="username"
-                  placeholder="nombre@empresa.com"
-                  class="w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 py-2.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                />
-              </div>
+          <form class="space-y-5" [formGroup]="form" (ngSubmit)="submit()">
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none z-10">mail</span>
+              <input
+                id="userEmail"
+                type="email"
+                formControlName="email"
+                autocomplete="username"
+                placeholder=" "
+                (focus)="onFieldFocus('email')"
+                (blur)="onFieldBlur('email')"
+                (input)="onTextInput($event)"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-3.5 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+              />
+              <label
+                for="userEmail"
+                class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
+                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+              >Correo Corporativo</label>
             </div>
 
-            <div>
-              <div class="flex items-center justify-between mb-1.5">
-                <label class="font-label-md text-label-md text-on-surface font-semibold" for="userPassword">Contraseña</label>
-              </div>
-              <div class="relative flex items-center">
-                <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none">lock</span>
-                <input
-                  id="userPassword"
-                  type="password"
-                  formControlName="password"
-                  autocomplete="current-password"
-                  placeholder="••••••••••••"
-                  class="w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 py-2.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                />
-              </div>
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg select-none z-10">lock</span>
+              <input
+                id="userPassword"
+                [type]="showPassword() ? 'text' : 'password'"
+                formControlName="password"
+                autocomplete="current-password"
+                placeholder=" "
+                (focus)="onFieldFocus('password')"
+                (blur)="onFieldBlur('password')"
+                class="peer w-full bg-surface text-on-surface font-body-md text-body-md rounded-xl pl-9 pr-10 pt-4 pb-1.5 border border-border-subtle focus:border-primary focus:bg-surface-card focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+              />
+              <label
+                for="userPassword"
+                class="absolute left-9 text-on-surface-variant font-body-md text-body-md transition-all duration-150 pointer-events-none origin-left top-1/2 -translate-y-1/2
+                       peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-primary peer-focus:tracking-wide
+                       peer-[&:not(:placeholder-shown)]:top-2 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:tracking-wide"
+              >Contraseña</label>
+              <button
+                type="button"
+                (click)="togglePasswordVisibility()"
+                class="absolute right-3 text-on-surface-variant hover:text-on-surface transition-colors z-10"
+                [title]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              >
+                <span class="material-symbols-outlined text-lg" [class]="eyeBlinkClass">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+              </button>
             </div>
 
             @if (errorMessage) {
@@ -136,11 +202,25 @@
             <div class="pt-2">
               <button
                 type="submit"
-                [disabled]="form.invalid"
-                class="w-full bg-primary hover:bg-primary-container disabled:opacity-50 text-on-primary py-2.5 px-4 rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
+                [disabled]="form.invalid || submitState() !== 'idle'"
+                class="relative overflow-hidden w-full bg-primary hover:bg-primary-container text-on-primary py-2.5 px-4 rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
+                [class.opacity-50]="form.invalid && submitState() === 'idle'"
+                [class.bg-status-resolved]="submitState() === 'success'"
               >
-                <span>Iniciar Sesión</span>
-                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                @switch (submitState()) {
+                  @case ('loading') {
+                    <span class="btn-loading-bar"></span>
+                    <span class="relative z-10">Verificando...</span>
+                  }
+                  @case ('success') {
+                    <span class="material-symbols-outlined text-lg btn-check relative z-10">check_circle</span>
+                    <span class="relative z-10">¡Bienvenido!</span>
+                  }
+                  @default {
+                    <span class="relative z-10">Iniciar Sesión</span>
+                    <span class="material-symbols-outlined text-lg relative z-10">arrow_forward</span>
+                  }
+                }
               </button>
             </div>
           </form>
