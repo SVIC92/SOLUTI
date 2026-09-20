@@ -1,0 +1,66 @@
+# Despliegue del ai-service en una VM de Oracle Cloud "Always Free" (ver DEPLOYMENT.md
+# sección 3). A diferencia de `docker-compose.yml` (on-premise, todo-en-uno), aquí SOLO
+# corren la API y los 4 workers del ai-service: backend (Render) y frontend (Vercel) ya
+# están desplegados por separado, y Redis es el mismo Upstash que usa el backend (no un
+# contenedor local) para que ambos consuman el mismo stream `core-events`. Caddy da TLS
+# automático (Let's Encrypt) sin configuración manual de certificados.
+services:
+  ai-service:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  ai-triage-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.triage_worker"]
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+  # Genera los embeddings que alimentan la búsqueda semántica del Copilot al
+  # resolver/cerrar un ticket — sin este worker, ai_ticket_embeddings queda vacía.
+  ai-embedding-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.embedding_worker"]
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+  # Revisa periódicamente los tickets abiertos recientes en busca de clústeres de
+  # incidentes similares — posible caída general.
+  ai-anomaly-scheduler:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.anomaly_scheduler"]
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+  # Genera borradores de artículos de la Base de Conocimiento a partir de tickets
+  # resueltos "complejos" — siempre pendientes de revisión humana antes de publicarse.
+  ai-kb-generator-worker:
+    build: ./services/ai-service
+    env_file: ./services/ai-service/.env
+    command: ["python", "-m", "app.workers.kb_generator_worker"]
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+volumes:
+  caddy-data:

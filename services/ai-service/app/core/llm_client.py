@@ -1,30 +1,30 @@
-"""Wrapper único sobre la API de Gemini: selección de modelo por tarea, reintentos con
-backoff, salida estructurada (JSON schema) y registro de auditoría en ai_decision_log.
+"""Wrapper único sobre la API REST de Gemini: selección de modelo por tarea, reintentos
+con backoff, salida estructurada (JSON schema) y registro de auditoría en
+ai_decision_log.
 
-Aísla al resto de módulos de IA del SDK concreto — si en el futuro la organización exige
-migrar a un modelo local (compliance de datos), solo este archivo cambia.
+Usa la API REST vía `httpx` en vez del SDK oficial `google-genai`: ese SDK fija
+`websockets>=13`, en conflicto directo con `gradio-client` (que fija `websockets<13`)
+en el build de Hugging Face Spaces (SDK Gradio — ver DEPLOYMENT.md sección 3). Al
+llamar la API HTTP directamente evitamos esa dependencia por completo.
 
-Las funciones son `async` aunque el SDK de `google-genai` es síncrono: la llamada de
-red se ejecuta en un hilo aparte (`asyncio.to_thread`) para no bloquear el event loop
-único de FastAPI mientras Gemini responde — sin esto, dos usuarios usando el chatbot
-o el copilot a la vez se bloquean entre sí durante toda la duración de la llamada.
+Aísla al resto de módulos de IA del proveedor concreto — si en el futuro la
+organización exige migrar a un modelo local (compliance de datos), solo este archivo
+cambia.
 """
 from __future__ import annotations
 
-import asyncio
 import json
 import logging
 from dataclasses import dataclass
 from typing import Any
 
-from google import genai
-from google.genai import types
+import httpx
 
 from app.config import settings
 
 logger = logging.getLogger("ai-service.llm_client")
 
-_client = genai.Client(api_key=settings.gemini_api_key)
+_GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 
 class LlmUnavailableError(RuntimeError):
@@ -46,6 +46,35 @@ def _select_model(task: str) -> str:
     return settings.gemini_model_pro if task in high_reasoning_tasks else settings.gemini_model_fast
 
 
+async def _call_gemini(
+    *,
+    model: str,
+    system_prompt: str,
+    user_content: str,
+    generation_config: dict[str, Any] | None,
+) -> str:
+    """POST a `models/{model}:generateContent` — devuelve el texto de la primera
+    respuesta candidata. Deja que cualquier error de red/HTTP/forma de respuesta
+    inesperada se propague tal cual; el llamador decide cuántas veces reintentar."""
+    payload: dict[str, Any] = {
+        "systemInstruction": {"parts": [{"text": system_prompt}]},
+        "contents": [{"role": "user", "parts": [{"text": user_content}]}],
+    }
+    if generation_config:
+        payload["generationConfig"] = generation_config
+
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(
+            f"{_GEMINI_API_BASE}/{model}:generateContent",
+            headers={"x-goog-api-key": settings.gemini_api_key},
+            json=payload,
+        )
+        response.raise_for_status()
+        body = response.json()
+
+    return body["candidates"][0]["content"]["parts"][0]["text"]
+
+
 async def generate_structured(
     *,
     task: str,
@@ -62,18 +91,17 @@ async def generate_structured(
 
     for attempt in range(max_retries + 1):
         try:
-            response = await asyncio.to_thread(
-                _client.models.generate_content,
+            raw_text = await _call_gemini(
                 model=model,
-                contents=user_content,
-                config=types.GenerateContentConfig(
-                    system_instruction=system_prompt,
-                    response_mime_type="application/json",
-                    response_schema=json_schema,
-                ),
+                system_prompt=system_prompt,
+                user_content=user_content,
+                generation_config={
+                    "responseMimeType": "application/json",
+                    "responseSchema": json_schema,
+                },
             )
-            data = json.loads(response.text)
-            return LlmResult(data=data, model_used=model, raw_text=response.text)
+            data = json.loads(raw_text)
+            return LlmResult(data=data, model_used=model, raw_text=raw_text)
         except Exception as exc:  # noqa: BLE001 - se relanza tipado tras agotar reintentos
             last_error = exc
             logger.warning("Intento %s/%s fallido para tarea=%s: %s", attempt + 1, max_retries + 1, task, exc)
@@ -84,20 +112,18 @@ async def generate_structured(
 async def generate_text(*, task: str, system_prompt: str, user_content: str, max_retries: int = 2) -> str:
     """Llama a Gemini sin forzar JSON — usado para borradores de respuesta/artículos KB
     donde la salida es texto libre revisado por un humano antes de publicarse. Mismos
-    reintentos que `generate_structured` (antes hacía un solo intento sin reintentar,
-    inconsistente con el resto de llamadores de este módulo)."""
+    reintentos que `generate_structured`."""
     model = _select_model(task)
     last_error: Exception | None = None
 
     for attempt in range(max_retries + 1):
         try:
-            response = await asyncio.to_thread(
-                _client.models.generate_content,
+            return await _call_gemini(
                 model=model,
-                contents=user_content,
-                config=types.GenerateContentConfig(system_instruction=system_prompt),
+                system_prompt=system_prompt,
+                user_content=user_content,
+                generation_config=None,
             )
-            return response.text
         except Exception as exc:  # noqa: BLE001
             last_error = exc
             logger.warning("Intento %s/%s fallido para tarea=%s: %s", attempt + 1, max_retries + 1, task, exc)

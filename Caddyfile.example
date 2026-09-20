@@ -1,0 +1,8 @@
+# Copiar a `Caddyfile` (sin ".example") en la raíz del repo, en la VM de Oracle, y
+# reemplazar el dominio de abajo por el tuyo (ver DEPLOYMENT.md sección 3, paso 8) —
+# Caddy obtiene y renueva el certificado TLS de Let's Encrypt automáticamente, siempre
+# que el dominio ya apunte a la IP pública de la VM y los puertos 80/443 estén abiertos.
+
+tu-dominio.duckdns.org {
+	reverse_proxy ai-service:8000
+}

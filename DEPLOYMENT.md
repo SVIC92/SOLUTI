@@ -1,7 +1,7 @@
 # Despliegue en producción
 
-Estado: **frontend (Vercel)**, **backend (Render)** y **ai-service (Hugging Face
-Spaces)** documentados y con la config lista.
+Estado: **frontend (Vercel)**, **backend (Render)** y **ai-service (Oracle Cloud Always
+Free)** documentados y con la config lista.
 
 ---
 
@@ -56,74 +56,99 @@ reales, no se repiten aquí por ser secretos):
 `environment.prod.ts` → push → Vercel → anotar su URL → volver a Render y setear
 `FRONTEND_URL`.
 
-## 3. ai-service — Hugging Face Spaces (SDK Gradio, free tier)
+## 3. ai-service — Oracle Cloud "Always Free" (VM propia, Docker Compose)
 
-### Por qué esta plataforma, y por qué SDK Gradio y no Docker
+### Intento previo: Hugging Face Spaces (descartado)
+
+Se intentó Hugging Face Spaces (gratis, sin administrar servidor) y se chocó con tres
+restricciones seguidas, la última a nivel de cuenta (no de código):
+1. SDK **Docker** — bloqueado con candado "Paid", requiere plan de pago.
+2. SDK **Gradio** — build resuelto (ver `app/core/llm_client.py`, que ya no depende de
+   `google-genai` por el conflicto de `websockets` que esto causó — cambio que se
+   mantiene, es una mejora real), pero el hardware por defecto es **ZeroGPU**, que
+   exige una función `@spaces.GPU` inexistente en este código.
+3. Bajar el hardware de ese Space a **CPU basic** pedía plan PRO, y al crear un Space
+   nuevo, **CPU basic aparecía deshabilitado incluso con la cuenta verificada** (email y
+   teléfono) — restricción de la cuenta, no de la plantilla.
+
+Los archivos que se llegaron a preparar (`services/ai-service/hf_space_entrypoint.py`,
+`README.huggingface.md`, `Dockerfile.huggingface`, `entrypoint.huggingface.sh`) quedan
+en el repo sin usarse, por si esta restricción de cuenta se levanta más adelante.
+
+### Por qué Oracle Cloud Always Free
 
 En producción el `ai-service` son **5 procesos**, no uno: la API FastAPI (`app.main:app`)
 más 4 *workers* en loop infinito consumiendo Redis Streams (`triage_worker`,
-`embedding_worker`, `anomaly_scheduler`, `kb_generator_worker` — ver `docker-compose.yml`
-en la raíz, que los modela como 5 contenedores separados para on-premise). Cada uno carga
-su propia copia del modelo `BAAI/bge-m3` (~1-2GB en RAM vía `@lru_cache` en
+`embedding_worker`, `anomaly_scheduler`, `kb_generator_worker`). Cada uno carga su propia
+copia del modelo `BAAI/bge-m3` (~1-2GB en RAM vía `@lru_cache` en
 `app/core/embeddings.py`, caché *por proceso*), así que sin fusionarlos el requerimiento
 real es de ~6-8GB de RAM repartidos en 5 servicios.
 
-Se evaluó Oracle Cloud "Always Free" (gratis de por vida pero requiere administrar una
-VM propia: Docker, firewall, TLS) y Fly.io (ya no tiene tier gratuito real, ~$12/mes).
-**Se eligió Hugging Face Spaces**: gratis de por vida en el tier de CPU, con ~16GB de RAM
-— de sobra para los 5 procesos sin necesidad de fusionarlos en uno solo — y sin que haya
-que administrar servidor, firewall ni certificados TLS.
+Oracle Cloud "Always Free" da una VM ARM (Ampere A1, hasta 4 OCPU / 24GB RAM) gratis de
+por vida — sin fecha de expiración ni upgrade forzado, de sobra para los 5 procesos sin
+fusionarlos. La tarjeta que pide al crear la cuenta es solo verificación de identidad
+(igual que Google Cloud/AWS free tier), no una función paga como el bloqueo de Docker en
+Hugging Face. La diferencia real frente a un PaaS: administras tú la VM (Docker,
+firewall, TLS) — no hay un dashboard que lo resuelva por ti.
 
-**El SDK es Gradio, no Docker:** el selector de SDK al crear un Space (`huggingface.co/
-new-space`) muestra el SDK **Docker con candado "Paid"** — a diferencia de lo que se
-pensó en un primer momento, no es solo una verificación de tarjeta, Hugging Face
-directamente lo restringe a planes de pago. **Gradio y Static sí son gratis sin
-tarjeta.** El runtime "Gradio" de Spaces simplemente prepara un venv desde
-`requirements.txt` y ejecuta el archivo indicado en `app_file` — no exige que el
-proceso use la librería `gradio` en sí, solo que algo quede escuchando en el puerto
-expuesto. Por eso `hf_space_entrypoint.py` (ver más abajo) es Python puro sin ninguna
-llamada a `gradio`: solo aprovecha que este SDK no pide tarjeta.
+### Archivos de este repo para este despliegue
 
-**Limitación conocida:** un Space gratuito "duerme" tras un período sin tráfico HTTP, y
-con él mueren los 4 workers en segundo plano. Se resuelve con un *keep-alive* externo
-gratuito (paso 4 más abajo) que llama a `/health` cada pocos minutos.
-
-### Archivos de este repo para el Space
-
-- `services/ai-service/hf_space_entrypoint.py` — arranca los 4 workers como subprocesos
-  Python (con reintento si alguno muere) y sirve la API FastAPI existente vía `uvicorn`.
-- `services/ai-service/README.huggingface.md` — metadata YAML que Hugging Face requiere
-  en la raíz del Space (`sdk: gradio`, `app_file`, puerto, etc.).
-- `services/ai-service/Dockerfile.huggingface` y `entrypoint.huggingface.sh` — **no se
-  usan por ahora** (quedan listos por si el SDK Docker se habilita más adelante, ej. con
-  un plan de pago futuro).
+- `docker-compose.oracle.yml` — **solo** el ai-service y sus 4 workers (a diferencia de
+  `docker-compose.yml`, que además levanta backend/frontend/redis para el despliegue
+  on-premise todo-en-uno). No incluye un contenedor Redis propio: usa el mismo Upstash
+  que ya configuraste en el backend (Render), para que ambos consuman el mismo stream
+  `core-events`. Incluye Caddy para TLS automático (Let's Encrypt).
+- `Caddyfile.example` — copiar a `Caddyfile` y poner tu dominio real.
 
 ### Pasos para desplegar
 
-1. **Crear el Space**: [huggingface.co/new-space](https://huggingface.co/new-space) →
-   SDK **Gradio** → visibilidad Private o Public según prefieras. Esto crea un repo git
-   propio del Space (separado de este monorepo).
-2. **Copiar el contenido** de `services/ai-service/` (carpeta `app/`, `migrations/`,
-   `hf_space_entrypoint.py`) al repo del Space, y además:
-   - `requirements.txt` — copiar tal cual y agregar una línea al final: `gradio>=4.0,<5`
-     (Hugging Face ya preinstala gradio por el SDK, pero así queda explícito y fijado).
-   - `README.huggingface.md` → renombrar a `README.md` en la raíz del Space (Hugging
-     Face lee el front matter YAML de ahí para configurar el Space).
-   - `Dockerfile.huggingface`/`entrypoint.huggingface.sh` **no** se copian (no se usan
-     con SDK Gradio).
-3. **Variables de entorno** en Settings → Repository secrets del Space (mismos nombres
-   que `services/ai-service/.env.example`):
-   - `DATABASE_URL` — la misma Neon Postgres que usa el backend.
-   - `REDIS_URL` — el mismo Upstash (`rediss://...`) configurado en el backend (Render).
-   - `BACKEND_URL` — URL pública del backend en Render + `/api/v1` (no `localhost`).
+1. **Crear cuenta** en [oracle.com/cloud/free](https://www.oracle.com/cloud/free/) —
+   pide tarjeta solo para verificación de identidad.
+2. **Crear la VM** (Compute → Instances → Create Instance):
+   - Imagen: **Ubuntu 22.04 (aarch64/ARM)**, marcada "Always Free eligible".
+   - Shape: **VM.Standard.A1.Flex** — usa 2 OCPU / 12GB (deja margen del cupo total de
+     4 OCPU/24GB por si más adelante quieres otra instancia).
+   - Asigna una **IP pública**.
+   - Sube o genera tu clave SSH ahí mismo.
+3. **Abrir puertos** en la VCN (Networking → Virtual Cloud Networks → tu VCN →
+   Security Lists → Default Security List → Add Ingress Rules): permitir TCP **80** y
+   **443** desde `0.0.0.0/0` (el 22 para SSH ya viene abierto por defecto).
+4. **Conectarte e instalar Docker**:
+   ```bash
+   ssh ubuntu@<ip-publica>
+   curl -fsSL https://get.docker.com | sudo sh
+   sudo usermod -aG docker $USER
+   # cerrar sesión y volver a entrar para que el grupo tome efecto
+   sudo apt-get install -y docker-compose-plugin
+   ```
+   Nota: como la VM es ARM64, algunas dependencias de Python (ej. `torch`, usado por
+   `sentence-transformers` para los embeddings) deben tener wheel para `aarch64` o el
+   build compila desde fuente (lento, y puede fallar en una VM chica) — si el build
+   tarda demasiado o falla en ese paquete, es lo primero a revisar.
+5. **Clonar el repo** en la VM:
+   ```bash
+   git clone <url-de-tu-repo>
+   cd <tu-repo>
+   ```
+6. **Crear `services/ai-service/.env`** (no se commitea) con los valores reales, mismos
+   nombres que `services/ai-service/.env.example`:
+   - `DATABASE_URL` — la misma Neon Postgres, con `postgresql+asyncpg://` y `?ssl=require`.
+   - `REDIS_URL` — el mismo Upstash (`rediss://...`) que usa el backend en Render.
+   - `BACKEND_URL` — URL pública del backend en Render + `/api/v1`.
    - `GEMINI_API_KEY`, `GEMINI_MODEL_FAST`, `GEMINI_MODEL_PRO`.
    - `EMBEDDING_MODEL_NAME=BAAI/bge-m3`, `EMBEDDING_DIM=1024`.
-   - `AI_SERVICE_API_KEY` — el mismo valor que `AI_SERVICE_API_KEY` en el backend.
+   - `AI_SERVICE_API_KEY` — el mismo valor configurado en el backend.
    - `TRIAGE_CONFIDENCE_THRESHOLD=0.7`, `LOG_LEVEL=info`.
-4. **Keep-alive**: en [cron-job.org](https://cron-job.org) (gratis) crear un job que
-   haga `GET` a `https://<tu-space>.hf.space/health` cada 5-10 minutos, para que el
-   Space nunca llegue a dormirse y los workers de Redis Streams sigan consumiendo.
-5. **Backend (Render)**: actualizar `AI_SERVICE_URL` a `https://<tu-space>.hf.space` y
-   `AI_SERVICE_API_KEY` al mismo valor del paso 3 — mientras esto no esté seteado,
-   `ai-client.ts` devuelve 503 sin romper el resto del backend (comportamiento normal en
-   "modo degradado").
+7. **Dominio + TLS**: si no tienes dominio propio, crea uno gratis en
+   [duckdns.org](https://www.duckdns.org) apuntando a la IP pública de la VM. Copia
+   `Caddyfile.example` a `Caddyfile` en la raíz del repo y reemplaza el dominio de
+   ejemplo por el tuyo.
+8. **Levantar todo**:
+   ```bash
+   docker compose -f docker-compose.oracle.yml up -d --build
+   ```
+9. **Verificar**: `https://tu-dominio.duckdns.org/health` debería responder
+   `{"status": "ok"}`. Logs con `docker compose -f docker-compose.oracle.yml logs -f`.
+10. **Backend (Render)**: actualizar `AI_SERVICE_URL` a `https://tu-dominio.duckdns.org`
+    y `AI_SERVICE_API_KEY` al mismo valor del paso 6 — mientras esto no esté seteado,
+    `ai-client.ts` devuelve 503 sin romper el resto del backend ("modo degradado").
